@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,11 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
-        //
+        return view('item.index')->with([
+            'items'     =>  $category->items
+        ]);
     }
 
     /**
