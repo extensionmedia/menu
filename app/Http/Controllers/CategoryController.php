@@ -14,7 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('home')->with([
+            'categories'    =>  Category::where('is_active', 1)->orderBy('level')->get(),
+        ]);
     }
 
     /**

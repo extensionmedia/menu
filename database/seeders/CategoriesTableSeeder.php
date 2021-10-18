@@ -22,128 +22,50 @@ class CategoriesTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
-                'name' => 'Margarita',
-                'image' => '',
-                'groupe_id' => 1,
+                'name' => 'Pizza',
+                'image' => 'https://img.freepik.com/photos-gratuite/vue-dessus-pizza-au-pepperoni-coupee-six-tranches_141793-2157.jpg?size=626&ext=jpg',
+                'level' => 1,
+                'is_active' => 1,
             ),
             1 => 
             array (
-                'id' => 2,
-                'name' => 'Fruit de Mer',
-                'image' => '',
-                'groupe_id' => 1,
+                'id' => 3,
+                'name' => 'Tacos',
+                'image' => 'https://assets.myfoodandfamily.com/adaptivemedia/rendition/id_3566926e794027c9fd994bec11ad21db96b38868/ht_650/wd_1004/name_./grilled-mexican-panini',
+                'level' => 3,
+                'is_active' => 1,
             ),
             2 => 
             array (
-                'id' => 3,
-                'name' => 'Tacos 1',
-                'image' => '',
-                'groupe_id' => 2,
+                'id' => 7,
+                'name' => 'Hamburger',
+                'image' => 'https://media.istockphoto.com/photos/hamburger-with-cheese-and-french-fries-picture-id1188412964?k=20&m=1188412964&s=612x612&w=0&h=Ow-uMeygg90_1sxoCz-vh60SQDssmjP06uGXcZ2MzPY=',
+                'level' => 7,
+                'is_active' => 1,
             ),
             3 => 
             array (
-                'id' => 4,
-                'name' => 'Tacos 2',
-                'image' => '',
-                'groupe_id' => 2,
+                'id' => 11,
+                'name' => 'Salades',
+                'image' => 'https://cdn.bioalaune.com/img/article/thumb/900x500/36524-etiquetage-alimentaire-trompeur-industriels.png',
+                'level' => 11,
+                'is_active' => 1,
             ),
             4 => 
             array (
-                'id' => 5,
-                'name' => 'Tacos 3',
-                'image' => '',
-                'groupe_id' => 2,
+                'id' => 14,
+                'name' => 'Boissons Chauds',
+                'image' => 'https://www.dunesdeserts.com/wp-content/uploads/2019/03/THE-A-LA-MENTHE-MAROC-12.5.jpg',
+                'level' => 14,
+                'is_active' => 1,
             ),
             5 => 
             array (
-                'id' => 6,
-                'name' => 'Tacos 3',
-                'image' => '',
-                'groupe_id' => 2,
-            ),
-            6 => 
-            array (
-                'id' => 7,
-                'name' => 'Hamburger',
-                'image' => '',
-                'groupe_id' => 3,
-            ),
-            7 => 
-            array (
-                'id' => 8,
-                'name' => 'Hamburger test',
-                'image' => '',
-                'groupe_id' => 3,
-            ),
-            8 => 
-            array (
-                'id' => 9,
-                'name' => 'Hamburger 45',
-                'image' => '',
-                'groupe_id' => 3,
-            ),
-            9 => 
-            array (
-                'id' => 10,
-                'name' => 'Hamburger zakaria',
-                'image' => '',
-                'groupe_id' => 3,
-            ),
-            10 => 
-            array (
-                'id' => 11,
-                'name' => 'Salade Niçoise',
-                'image' => '',
-                'groupe_id' => 4,
-            ),
-            11 => 
-            array (
-                'id' => 12,
-                'name' => 'Salade Marocaine',
-                'image' => '',
-                'groupe_id' => 4,
-            ),
-            12 => 
-            array (
-                'id' => 13,
-                'name' => 'Salade Mziwna',
-                'image' => '',
-                'groupe_id' => 4,
-            ),
-            13 => 
-            array (
-                'id' => 14,
-                'name' => 'Atay khdar',
-                'image' => '',
-                'groupe_id' => 5,
-            ),
-            14 => 
-            array (
-                'id' => 15,
-                'name' => 'Cafe Noire',
-                'image' => '',
-                'groupe_id' => 5,
-            ),
-            15 => 
-            array (
-                'id' => 16,
-                'name' => 'Lipton',
-                'image' => '',
-                'groupe_id' => 5,
-            ),
-            16 => 
-            array (
                 'id' => 17,
-                'name' => 'CocaCola',
-                'image' => '',
-                'groupe_id' => 6,
-            ),
-            17 => 
-            array (
-                'id' => 18,
-                'name' => 'Bul de grace',
-                'image' => '',
-                'groupe_id' => 7,
+                'name' => 'Boissons Froids',
+                'image' => 'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iSOeWv5_Qtrw/v1/1000x-1.jpg',
+                'level' => 17,
+                'is_active' => 1,
             ),
         ));
         

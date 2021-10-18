@@ -18,8 +18,9 @@ class CreateItemsTable extends Migration
             $table->integer('category_id');
             $table->string('name');
             $table->string('image')->nullable();
+            $table->string('description')->nullable();
             $table->float('price')->nullable()->default(0);
-            $table->boolean('status');
+            $table->boolean('is_active')->default(0);
         });
     }
 

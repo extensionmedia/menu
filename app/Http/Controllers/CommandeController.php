@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Groupe;
+use App\Models\Commande;
 use Illuminate\Http\Request;
 
-class GroupeController extends Controller
+class CommandeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        return view('home')->with([
-            'groupes'       =>      Groupe::all()
-        ]);
+    public function index()
+    {
+        //
     }
 
     /**
@@ -42,10 +41,10 @@ class GroupeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Groupe  $groupe
+     * @param  \App\Models\Commande  $commande
      * @return \Illuminate\Http\Response
      */
-    public function show(Groupe $groupe)
+    public function show(Commande $commande)
     {
         //
     }
@@ -53,10 +52,10 @@ class GroupeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Groupe  $groupe
+     * @param  \App\Models\Commande  $commande
      * @return \Illuminate\Http\Response
      */
-    public function edit(Groupe $groupe)
+    public function edit(Commande $commande)
     {
         //
     }
@@ -65,10 +64,10 @@ class GroupeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Groupe  $groupe
+     * @param  \App\Models\Commande  $commande
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Groupe $groupe)
+    public function update(Request $request, Commande $commande)
     {
         //
     }
@@ -76,10 +75,10 @@ class GroupeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Groupe  $groupe
+     * @param  \App\Models\Commande  $commande
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Groupe $groupe)
+    public function destroy(Commande $commande)
     {
         //
     }

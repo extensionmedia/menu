@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Groupe extends Model
+class Commande extends Model
 {
     use HasFactory;
-
-    public function categories(){
-        return $this->hasMany(Category::class);
-    }
+    protected $fillable = [
+        'is_active'
+    ];
 }

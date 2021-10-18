@@ -50,7 +50,7 @@
     <div class="relative content w-screen h-screen bg-no-repeat overflow-auto" style="background-image: url({{asset('img/background_04.jpg')}})">
         <div class="w-full xl:w-10/12 xl:mx-auto pb-8">
             @include('container.common.top')
-            <div class="px-4 xl:px-0 bg-white bg-opacity-10 text-white">
+            <div class="px-4 xl:px-0 text-white">
                 @yield('content')
             </div>
         </div>

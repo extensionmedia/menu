@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class CommandeDetail extends Model
 {
     use HasFactory;
-    public function category(){
-        return $this->belongsTo(Category::class);
-    }
+    public $timestamps = false;
+    protected $fillable = [
+        'item_id',
+        'commande_id'
+    ];
 }
