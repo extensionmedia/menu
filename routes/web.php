@@ -5,10 +5,20 @@ use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\CommandeDetailController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FileUploadController;
 
 Route::get('/', [CategoryController::class, 'index'])->name('home');
-Route::get('/{category}', [ItemController::class, 'index'])->name('items');
 Route::post('/commande/item/store', [CommandeDetailController::class, 'store'])->name('commande.item.store');
+Route::post('/commande/item/destroy', [CommandeDetailController::class, 'destroy'])->name('commande.item.destroy');
+Route::get('/commande', [CommandeController::class, 'index'])->name('commande.index');
 
+Route::get('/item/index/{category}', [ItemController::class, 'index'])->name('items');
+Route::get('/item/create', [ItemController::class, 'create'])->name('item.create');
+Route::post('/item/store', [ItemController::class, 'store'])->name('item.store');
 
+Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+
+Route::post('file/upload', [FileUploadController::class, 'upload'])->name('file.upload');
+Route::post('file/read', [FileUploadController::class, 'getFiles'])->name('file.read');
+Route::post('file/destroy', [FileUploadController::class, 'destroy'])->name('file.destroy');

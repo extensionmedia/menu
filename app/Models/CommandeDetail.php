@@ -13,4 +13,8 @@ class CommandeDetail extends Model
         'item_id',
         'commande_id'
     ];
+
+    public function item(){
+        return $this->hasOne(Item::class, 'id', 'item_id');
+    }
 }

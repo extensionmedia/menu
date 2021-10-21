@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -26,7 +27,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create')->with([
+            'UID'       =>      Str::uuid()
+        ]);
     }
 
     /**
@@ -37,7 +40,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = Category::create([
+            'name'          =>  $request->name,
+            'is_active'     =>  $request->has('is_active')? 1:0,
+            'level'         =>  $request->level,
+            'image'         =>  $request->filename
+        ]);
+        if($item){
+            return response()->json(['response'=>"success", 'message'=>'categorie has been created']);
+        }else{
+            return response()->json(['response'=>"error", 'message'=>'categorie has not been created']);
+        }
     }
 
     /**

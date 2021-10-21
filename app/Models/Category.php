@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'level',
+        'is_active',
+        'image'
+    ];
+    public $timestamps = false;
     public function items(){
         return $this->hasMany(Item::class);
     }

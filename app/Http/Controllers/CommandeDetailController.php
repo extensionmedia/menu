@@ -95,8 +95,16 @@ class CommandeDetailController extends Controller
      * @param  \App\Models\CommandeDetail  $commandeDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CommandeDetail $commandeDetail)
-    {
-        //
+    public function destroy(Request $request){
+        try {
+            $id = $request->id;
+
+            $detail = CommandeDetail::find($id);
+            $detail->delete();
+            return response()->json(['response'=>"success", "message"=>"detail deleted"]);
+
+        } catch (\Throwable $th) {
+            return response()->json(['response'=>"error"]);
+        }
     }
 }

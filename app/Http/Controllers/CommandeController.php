@@ -14,7 +14,9 @@ class CommandeController extends Controller
      */
     public function index()
     {
-        //
+        return view('commande.index')->with([
+            'commande'      =>      Commande::where('is_active', 1)->first()
+        ]);
     }
 
     /**

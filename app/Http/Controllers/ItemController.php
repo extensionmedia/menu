@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Commande;
-use App\Models\CommandeDetail;
+use Illuminate\Support\Str;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
@@ -30,7 +29,10 @@ class ItemController extends Controller
      */
     public function create()
     {
-
+        return view('item.create')->with([
+            'UID'           =>      Str::uuid(),
+            'categories'    =>      Category::where('is_active', 1)->orderBy('level')->get()
+        ]);
 
     }
 
@@ -42,7 +44,20 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-
+        $item = Item::create([
+            'name'              =>  $request->name,
+            'category_id'          =>  $request->category_id,
+            'description'   =>  $request->description,
+            'is_active'     =>  $request->has('is_active')? 1:0,
+            'price'         =>  $request->price,
+            'image'         =>  $request->filename
+        ]);
+        if($item){
+            return redirect(route('items', ['category'=>$request->category_id]));
+            return response()->json(['response'=>"success", 'message'=>'Item has been created']);
+        }else{
+            return response()->json(['response'=>"error", 'message'=>'Item has not been created']);
+        }
     }
 
     /**
