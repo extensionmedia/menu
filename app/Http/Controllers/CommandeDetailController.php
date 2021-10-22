@@ -37,7 +37,7 @@ class CommandeDetailController extends Controller
     public function store(Request $request)
     {
         $commande = Commande::where('is_active', 1)->first();
-        $qte = 2;
+        $qte = 1;
         if(!$commande){
             Commande::create([
                 'is_active'     =>  1
@@ -45,10 +45,22 @@ class CommandeDetailController extends Controller
             $commande = Commande::where('is_active', 1)->first();
         }
 
+        $item_id = $request->item_id;
+        dd($commande->details->get();
+        foreach($commande->details() as $d){
+            if($d->item_id == $item_id){
+                $qte++;
+            } 
+        }
+
         CommandeDetail::create([
             'commande_id'       =>  $commande->id,
-            'item_id'           =>  $request->item_id
+            'item_id'           =>  $request->item_id,
+            'qte'               =>  $qte
         ]);
+
+        return redirect(route('commande.index'));
+
         return [
             'status'        =>  'success',
             'message'       =>  'Item added successfuly'

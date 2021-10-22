@@ -11,7 +11,8 @@ class CommandeDetail extends Model
     public $timestamps = false;
     protected $fillable = [
         'item_id',
-        'commande_id'
+        'commande_id',
+        'qte'
     ];
 
     public function item(){
