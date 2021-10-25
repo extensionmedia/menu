@@ -18,4 +18,18 @@ class Category extends Model
     public function items(){
         return $this->hasMany(Item::class);
     }
+
+    // public function commande(){
+    //     $details = collect();
+    //     $commande = Commande::where('is_active', 1)->first();
+    //     if($commande){
+    //         foreach($commande->details() as $d){
+    //             if($d->item->category_id == $this->id){
+    //                 $details->push($d);
+    //             }
+    //         }
+    //     }
+    //     return $details;
+    // }
+
 }

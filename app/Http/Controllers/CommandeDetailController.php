@@ -46,18 +46,23 @@ class CommandeDetailController extends Controller
         }
 
         $item_id = $request->item_id;
-        dd($commande->details->get();
-        foreach($commande->details() as $d){
+        foreach($commande->details()->get() as $d){
             if($d->item_id == $item_id){
                 $qte++;
-            } 
+            }
+        }
+        if($qte == 1){
+            CommandeDetail::create([
+                'commande_id'       =>  $commande->id,
+                'item_id'           =>  $request->item_id,
+                'qte'               =>  $qte
+            ]);
+        }else{
+            $detail = CommandeDetail::where('item_id', $item_id)->where('commande_id', $commande->id)->first();
+            $detail->qte++;
+            $detail->save();
         }
 
-        CommandeDetail::create([
-            'commande_id'       =>  $commande->id,
-            'item_id'           =>  $request->item_id,
-            'qte'               =>  $qte
-        ]);
 
         return redirect(route('commande.index'));
 

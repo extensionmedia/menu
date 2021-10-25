@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Commande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -15,8 +16,22 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $commande = Commande::where('is_active', 1)->first();
+
+        $categories = Category::where('is_active', 1)->orderBy('level')->get()->each(function($c) use ($commande){
+            $counter = 0;
+            if($commande){
+                foreach($commande->details as $d){
+                    if($d->item->category_id == $c->id){
+                        $counter++;
+                    }
+                }
+            }
+            $c->commande = $counter;
+        });
+
         return view('home')->with([
-            'categories'    =>  Category::where('is_active', 1)->orderBy('level')->get(),
+            'categories'    =>  $categories,
         ]);
     }
 
