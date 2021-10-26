@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Commande;
 use Illuminate\Http\Request;
 
@@ -83,5 +84,18 @@ class CommandeController extends Controller
     public function destroy(Commande $commande)
     {
         //
+    }
+
+    public function counter(){
+        $commande = Commande::where('is_active', 1)->first();
+        $counter = 0;
+
+        if($commande){
+            foreach($commande->details as $d){
+                $counter += $d->qte;
+            }
+        }
+
+        return $counter;
     }
 }

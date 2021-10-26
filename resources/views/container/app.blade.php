@@ -57,8 +57,11 @@
             </div>
         </div>
 
-        <a href="{{route('commande.index')}}" class="blob green border-2 border-green-400 fixed right-0 bottom-0 h-16 w-16 rounded-full text-white text-center m-4 items-center text-2xl pt-4">
+        <a href="{{route('commande.index')}}" class="blob green border-2 border-green-600 fixed right-0 bottom-0 h-16 w-16 rounded-full text-white text-center m-4 items-center text-2xl pt-4">
             <i class="fas fa-utensils"></i>
+            <div class="counter h-8 w-8  bg-yellow-400 text-gray-900 border-green-600 border-4 rounded-full -mt-16 -ml-2 text-sm pt-1">
+               0
+            </div>
         </a>
 
         <div class="fixed left-0 bottom-0 m-4 items-center flex gap-4">
@@ -72,5 +75,14 @@
 
 
     </div>
+    <script>
+        $(document).ready(function(){
+            $.get("/commande/counter",
+                function(r){
+                    console.log(r);
+                    $(".counter").html(r)
+            });
+        })
+    </script>
 </body>
 </html>
