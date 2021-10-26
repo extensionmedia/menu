@@ -86,6 +86,16 @@
                     });
                     data.append( '_token', $('meta[name="csrf-token"]').attr('content') );
                     data.append( 'folder', "{{$folder}}" );
+
+                    var loader = `
+                        <div class="loader absolute bottom-0 top-0 left-0 right-0 bg-red-100 bg-opacity-40">
+                            <div class="w-24 mx-auto mt-24 text-center">
+                                <i class="fas fa-sync fa-spin"></i>
+                            </div>
+                        </div>
+                    `;
+                    $('.images').html(loader);
+
                     jQuery.ajax({
                         url: "{{ route('file.upload') }}",
                         data: data,
@@ -96,7 +106,7 @@
                         type: 'POST', // For jQuery < 1.9
                         success: function(data){
                             $('#filename').val(data.file);
-                            console.log(data);
+                            $('.loader').remove();
                             $('.reload').trigger('click');
                         }
                     });

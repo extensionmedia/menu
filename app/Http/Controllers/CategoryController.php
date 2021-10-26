@@ -62,6 +62,7 @@ class CategoryController extends Controller
             'image'         =>  $request->filename
         ]);
         if($item){
+            return redirect(route('home'));
             return response()->json(['response'=>"success", 'message'=>'categorie has been created']);
         }else{
             return response()->json(['response'=>"error", 'message'=>'categorie has not been created']);
