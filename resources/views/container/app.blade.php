@@ -49,7 +49,7 @@
     </style>
 </head>
 <body>
-    <div class="relative content w-screen h-screen bg-no-repeat overflow-auto" style="background-image: url({{asset('img/background_04.jpg')}})">
+    <div class="relative bg-white content w-screen h-screen bg-no-repeat overflow-auto pb-14" style="background-image: url({{asset('img/background_04.jpg')}})">
         <div class="w-full xl:w-10/12 xl:mx-auto pb-8">
             @include('container.common.top')
             <div class="px-4 xl:px-0 text-white">
@@ -67,9 +67,11 @@
         <div class="fixed left-0 bottom-0 m-4 items-center flex gap-4">
             <a href="{{route('category.create')}}" class="border  h-16 w-16 rounded-full text-white text-center text-2xl pt-4">
                 <i class="fas fa-plus"></i>
+                <div class="text-xs">category</div>
             </a>
-            <a href="{{route('item.create')}}" class="border text-red-600 h-16 w-16 rounded-full text-white text-center text-2xl pt-4">
+            <a href="{{route('item.create')}}" class="border h-16 w-16 rounded-full text-white text-center text-2xl pt-4">
                 <i class="fas fa-plus"></i>
+                <div class="text-xs">Plat</div>
             </a>
         </div>
 
