@@ -1,32 +1,39 @@
 @extends('container.app')
 @section('content')
+    <div class="text-center py-4">
+        <a href="{{route('home')}}" class="py-2 px-4 w-40 text-center rounded-full bg-green-600 bg-opacity-30 hover:bg-opacity-40 cursor-pointer">
+            <i class="fas fa-arrow-left"></i>
+            Retour
+        </a>
+    </div>
     <div class="border rounded-lg overflow-hidden my-4">
         <div class="bg-gray-100 py-2 px-4 text-gray-800 text-sm">
-            <i class="fas fa-plus"></i> Ajouter une category
+            <i class="fas fa-plus"></i> Modifier une category <small>{{$UID}}</small>
             @php
                 $folder = 'categories/'.$UID
             @endphp
         </div>
-        <form method="POST" action="{{route('category.store')}}" class="bg-white py-8 px-4">
+        <form method="POST" action="{{route('category.update')}}" class="bg-white py-8 px-4">
             @csrf
+            @method('PUT')
             <div class="text-gray-600 text-xs flex items-center mb-4">
                 <div class="w-32">Categorie</div>
-                <input required class="border rounded py-1 px-2 text-sm flex-1" type="text" name="name" placeholder="Catégorie...">
+                <input value="{{$category->name}}" required class="border rounded py-1 px-2 text-sm flex-1" type="text" name="name" placeholder="Catégorie...">
             </div>
             <div class="text-gray-600 text-xs flex items-center mb-4">
                 <div class="w-32">Niveau</div>
-                <input required class="border rounded py-1 px-2 text-sm flex-1" type="number" min="1" name="level" placeholder="0">
+                <input value="{{$category->level}}" required class="border rounded py-1 px-2 text-sm flex-1" type="number" min="1" name="level" placeholder="0">
             </div>
             <div class="text-gray-600 text-xs flex items-center mb-4">
                 <div class="w-32">Visible</div>
-                <input type="checkbox" checked name="is_active">
+                <input type="checkbox" @if($category->is_active) checked @endif name="is_active">
             </div>
 
-            <div class="text-gray-600 text-xs flex mb-12">
+            <div class="text-gray-600 text-xs flex mb-10">
                 <div class="w-32">Image</div>
                 <div class="relative">
                     <div class="images rounded-lg h-40 w-40 overflow-hidden border-2 hover:border-blue-700 cursor-pointer">
-                        <img class="bg-cover h-40 w-40" src="{{asset('img/upload_image.jpg')}}" alt="">
+                        <img class="bg-cover h-40 w-40" src="{{$category->image}}" alt="">
                     </div>
                     <div class="reload hidden">reload</div>
                     <input name="file" id="poster" type="file" class="hidden">
@@ -37,7 +44,7 @@
                 </div>
 
             </div>
-
+            {{$category->image}}
             <div class="text-gray-600 text-xs flex items-center mb-4">
                 <div class="w-32"></div>
                 <button class="bg-green-600 text-white py-2 px-4 rounded-lg">Enregistrer</button>
@@ -154,7 +161,7 @@
                         }
                     });
                 });
-                $('.reload').trigger('click');
+
                 // $('.images').magnificPopup({
                 //     delegate: 'a', // child items selector, by clicking on it popup will open
                 //     type: 'image',

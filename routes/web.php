@@ -18,7 +18,10 @@ Route::get('/item/create', [ItemController::class, 'create'])->name('item.create
 Route::post('/item/store', [ItemController::class, 'store'])->name('item.store');
 
 Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
 Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+Route::put('/category/update', [CategoryController::class, 'update'])->name('category.update');
+Route::post('/category/activate', [CategoryController::class, 'activate'])->name('category.activate');
 
 Route::post('file/upload', [FileUploadController::class, 'upload'])->name('file.upload');
 Route::post('file/read', [FileUploadController::class, 'getFiles'])->name('file.read');

@@ -18,7 +18,7 @@ class CategoryController extends Controller
     {
         $commande = Commande::where('is_active', 1)->first();
 
-        $categories = Category::where('is_active', 1)->orderBy('level')->get()->each(function($c) use ($commande){
+        $categories = Category::orderBy('is_active', 'desc')->orderBy('level')->get()->each(function($c) use ($commande){
             $counter = 0;
             if($commande){
                 foreach($commande->details as $d){
@@ -88,7 +88,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('category.edit')->with([
+            'category'  =>  $category,
+            'UID'       =>      Str::uuid()
+        ]);
     }
 
     /**
@@ -113,4 +116,21 @@ class CategoryController extends Controller
     {
         //
     }
+
+    public function activate(Request $request){
+        if($request->has('id')){
+            $id = $request->id;
+            $category = Category::find($id);
+            if($category){
+                $category->is_active = !$category->is_active;
+                $category->save();
+                return 1;
+            }else{
+                return -2;
+            }
+        }else{
+            return -1;
+        }
+    }
+
 }

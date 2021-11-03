@@ -10,4 +10,26 @@
 
     </div>
 
+    <script>
+        $(document).ready(function(){
+            $('.is_active').change(function(){
+                let id = $(this).data('id')
+                let that = $(this);
+                that.parent().parent().parent().find('.loading').removeClass('hidden');
+                $.ajax({
+                    url: "{{ route('category.activate') }}",
+                    data: {
+                        id: id,
+                        _token: $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: 'POST',
+                    type: 'POST',
+                    success: function(data){
+                        that.parent().parent().parent().find('.loading').toggleClass('hidden');
+                    }
+                })
+            })
+        });
+    </script>
+
 @endsection
