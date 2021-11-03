@@ -38,7 +38,7 @@
                 <input type="checkbox" checked name="is_active">
             </div>
 
-            <div class="text-gray-600 text-xs flex mb-4">
+            <div class="text-gray-600 text-xs flex mb-12">
                 <div class="w-32">Image</div>
                 <div class="relative">
                     <div class="images rounded-lg h-40 w-40 overflow-hidden border-2 hover:border-blue-700 cursor-pointer">
