@@ -29,7 +29,7 @@
                 <input type="checkbox" @if($category->is_active) checked @endif name="is_active">
             </div>
 
-            <div class="text-gray-600 text-xs flex mb-10">
+            <div class="text-gray-600 text-xs flex mb-20">
                 <div class="w-32">Image</div>
                 <div class="relative">
                     <div class="images rounded-lg h-40 w-40 overflow-hidden border-2 hover:border-blue-700 cursor-pointer">
@@ -44,7 +44,6 @@
                 </div>
 
             </div>
-            {{$category->image}}
             <div class="text-gray-600 text-xs flex items-center mb-4">
                 <div class="w-32"></div>
                 <button class="bg-green-600 text-white py-2 px-4 rounded-lg">Enregistrer</button>
