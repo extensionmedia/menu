@@ -30,6 +30,10 @@
                 <input required class="border rounded py-1 px-2 text-sm flex-1 bg-green-50 text-right" type="number" min="1" name="price" placeholder="0.00">
             </div>
             <div class="text-gray-600 text-xs flex items-center mb-4">
+                <div class="w-32">Niveau</div>
+                <input value="1" required class="border rounded py-1 px-2 text-sm flex-1" type="number" min="1" name="level" placeholder="0">
+            </div>
+            <div class="text-gray-600 text-xs flex items-center mb-4">
                 <div class="w-32">Visible</div>
                 <input type="checkbox" checked name="is_active">
             </div>

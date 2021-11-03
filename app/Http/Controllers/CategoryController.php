@@ -103,7 +103,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->name = $request->name;
+        $category->image = $request->filename;
+        $category->level = $request->level;
+        $category->is_active = $request->has('is_active')? 1:0;
+        $category->save();
+        return redirect(route('home'));
     }
 
     /**

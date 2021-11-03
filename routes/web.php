@@ -15,12 +15,15 @@ Route::get('/commande/counter', [CommandeController::class, 'counter'])->name('c
 
 Route::get('/item/index/{category}', [ItemController::class, 'index'])->name('items');
 Route::get('/item/create', [ItemController::class, 'create'])->name('item.create');
+Route::get('/item/edit/{item}', [ItemController::class, 'edit'])->name('item.edit');
 Route::post('/item/store', [ItemController::class, 'store'])->name('item.store');
+Route::put('/item/update/{item}', [ItemController::class, 'update'])->name('item.update');
+Route::post('/item/activate', [ItemController::class, 'activate'])->name('item.activate');
 
 Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
 Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
 Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
-Route::put('/category/update', [CategoryController::class, 'update'])->name('category.update');
+Route::put('/category/update/{category}', [CategoryController::class, 'update'])->name('category.update');
 Route::post('/category/activate', [CategoryController::class, 'activate'])->name('category.activate');
 
 Route::post('file/upload', [FileUploadController::class, 'upload'])->name('file.upload');

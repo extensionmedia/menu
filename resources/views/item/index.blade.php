@@ -11,38 +11,29 @@
     <div class="py-4">
 
         @foreach ($items as $item)
-            <div class="w-full bg-white md:flex border rounded-lg mb-4 overflow-hidden cursor-pointer hover:shadow hover:border-blue-200">
-                <div class="w-full md:w-60 max-h-36 overflow-hidden relative">
-                    <img class="w-full object-none object-center" src="{{$item->image}}">
-                </div>
-                <div class="flex-1 py-3 px-4">
-                    <div class="flex flex-col justify-between h-full">
-                        <div class="">
-                            <div class="flex justify-between items-center mb-1">
-                                <p class="text-xl text-gray-800 font-bold">
-                                    {{$item->name}}
-                                </p>
-                                <p class="bg-yellow-600 text-white rounded-full px-2">
-                                    {{$item->price}} MAD
-                                </p>
-                            </div>
-                            <div class="text-md text-gray-600 py-2">
-                                {{$item->description}}
-                            </div>
-                        </div>
-                        <div class="">
-                            <form method="POST" action="{{route('commande.item.store')}}" class="flex justify-between items-end">
-                                @csrf
-                                <input type="hidden" name="item_id" value="{{$item->id}}">
-                                <button class="py-2 px-4 bg-green-800 text-white rounded border border-green-700">Ajouter à ma commande</button>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            @include('item.partials.item')
         @endforeach
-
+        <script>
+            $(document).ready(function(){
+                $('.is_active').change(function(){
+                    let id = $(this).data('id')
+                    let that = $(this);
+                    that.parent().parent().parent().find('.loading').removeClass('hidden');
+                    $.ajax({
+                        url: "{{ route('item.activate') }}",
+                        data: {
+                            id: id,
+                            _token: $('meta[name="csrf-token"]').attr('content')
+                        },
+                        method: 'POST',
+                        type: 'POST',
+                        success: function(data){
+                            that.parent().parent().parent().find('.loading').toggleClass('hidden');
+                        }
+                    })
+                })
+            });
+        </script>
     </div>
 
 @endsection

@@ -79,7 +79,11 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        return view('item.edit')->with([
+            'item'  =>  $item,
+            'UID'       =>      Str::uuid(),
+            'categories'    =>      Category::where('is_active', 1)->orderBy('level')->get()
+        ]);
     }
 
     /**
@@ -91,7 +95,14 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $item->name = $request->name;
+        $item->category_id = $request->category_id;
+        $item->description = $request->description;
+        $item->image = $request->filename;
+        $item->level = $request->level;
+        $item->is_active = $request->has('is_active')? 1:0;
+        $item->save();
+        return redirect(route('items', ['category'=>$request->category_id]));
     }
 
     /**
@@ -103,5 +114,21 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         //
+    }
+
+    public function activate(Request $request){
+        if($request->has('id')){
+            $id = $request->id;
+            $item = Item::find($id);
+            if($item){
+                $item->is_active = !$item->is_active;
+                $item->save();
+                return 1;
+            }else{
+                return -2;
+            }
+        }else{
+            return -1;
+        }
     }
 }

@@ -1,6 +1,4 @@
 <style>
-
-/* Toggle B */
 input:checked ~ .dot {
   transform: translateX(100%);
   background-color: #48bb78;
@@ -22,15 +20,18 @@ input:checked ~ .dot {
                     <div class="relative">
                         <input type="checkbox" @if($category->is_active) checked @endif id="toggle_{{$category->id}}" data-id="{{$category->id}}" class="is_active sr-only">
                         <div class="block bg-gray-600 w-10 h-6 rounded-full"></div>
-                        <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition"></div>
+                        <div class="dot absolute left-1 top-1 bg-red-500 w-4 h-4 rounded-full transition"></div>
                     </div>
                 </label>
             </div>
         </div>
-        <div class="border-2 rounded-lg h-40 w-40 overflow-hidden">
+        <div class="relative border-2 rounded-lg h-40 w-40 overflow-hidden">
             <a href="{{route('items', $category)}}">
                 <img class="h-full" src="{{$category->image}}" alt="">
             </a>
+            <div class="absolute bottom-0 left-0 right-0 bg-red-600 bg-opacity-80 text-white py-2 text-center text-xs">
+                {{$category->name}}
+            </div>
         </div>
     </div>
 @else
@@ -42,10 +43,10 @@ input:checked ~ .dot {
             {{$category->name}}
         </div>
         @if ($category->commande)
-        <div class="absolute top-0 right-0 -m-1 h-8 w-8 flex items-center bg-yellow-400 text-gray-900 justify-center rounded-full border-green-600 border-4 shadow-lg">
-            {{$category->commande}}
-        </div>
-    @endif
+            <div class="absolute top-0 right-0 -m-1 h-8 w-8 flex items-center bg-yellow-400 text-gray-900 justify-center rounded-full border-green-600 border-4 shadow-lg">
+                {{$category->commande}}
+            </div>
+        @endif
     </div>
 @endif
 
