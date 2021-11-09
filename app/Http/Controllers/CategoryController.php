@@ -22,8 +22,10 @@ class CategoryController extends Controller
             $counter = 0;
             if($commande){
                 foreach($commande->details as $d){
-                    if($d->item->category_id == $c->id){
-                        $counter += $d->qte;
+                    if($d->item){
+                        if($d->item->category_id == $c->id){
+                            $counter += $d->qte;
+                        }
                     }
                 }
             }

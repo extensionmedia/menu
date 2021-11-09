@@ -32,8 +32,36 @@
                         }
                     })
                 })
+                $(document).on('click', '.destroy_item', function(e){
+                    e.preventDefault();
+                    var that = $(this);
+                    new Swal({
+                        title: 'Supprimer?',
+                        icon: 'warning',
+                        showDenyButton: true,
+                        showCancelButton: false,
+                        confirmButtonText: `Supprimer`,
+                        denyButtonText: `Annuler`,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url:"{{route('item.destroy')}}",
+                                data:{
+                                    _token:     $('meta[name="csrf-token"]').attr('content'),
+                                    item:         that.data('item')
+                                },
+                                method: 'POST',
+                                success: function(response){
+                                    location.reload();
+                                    console.log(response)
+                                }
+                            });
+                        }
+                    });
+                });
             });
-        </script>
+    </script>
+
     </div>
 
 @endsection

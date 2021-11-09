@@ -9,6 +9,7 @@
     <div class="w-full md:w-60 overflow-hidden relative">
         <img class="w-60 h-60 mx-auto" src="{{$item->image}}">
         <a href="{{route('item.edit', $item)}}" class="bg-white bg-opacity-10 absolute top-0 right-0 m-4 text-gray-500 px-1 hover:bg-blue-600 hover:text-gray-50 rounded-lg"><i class="fas fa-wrench"></i></a>
+        <a action="#" data-item="{{$item->id}}" class="destroy_item bg-white bg-opacity-10 absolute top-0 left-0 m-4 text-red-500 px-1 hover:bg-red-600 hover:text-red-50 rounded-lg"><i class="fas fa-minus-circle"></i></a>
     </div>
     <div class="flex-1 py-3 px-4">
         <div class="flex flex-col justify-between h-full">

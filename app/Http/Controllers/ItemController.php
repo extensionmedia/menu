@@ -100,6 +100,7 @@ class ItemController extends Controller
         $item->description = $request->description;
         $item->image = $request->filename;
         $item->level = $request->level;
+        $item->price = $request->price;
         $item->is_active = $request->has('is_active')? 1:0;
         $item->save();
         return redirect(route('items', ['category'=>$request->category_id]));
@@ -111,9 +112,31 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy(Request $request)
     {
-        //
+        if($request->has('item')){
+            $item = Item::find($request->item);
+            if($item){
+                $item->delete();
+                return [
+                    'status'    =>  'success',
+                    'message'   =>  'item deleted'
+                ];
+            }else{
+                return [
+                    'status'    =>  'error',
+                    'message'   =>  'item not found'
+                ];
+            }
+        }else{
+            return [
+                'status'    =>  'error',
+                'message'   =>  'error request'
+            ];
+        }
+        // return $request->item;
+        // return back();
+        // dd($item);
     }
 
     public function activate(Request $request){
