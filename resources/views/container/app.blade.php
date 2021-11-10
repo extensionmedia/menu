@@ -63,17 +63,19 @@
                0
             </div>
         </a>
+        @auth
+            <div class="fixed left-0 bottom-0 m-4 items-center flex gap-4">
+                <a href="{{route('category.create')}}" class="border  h-16 w-16 rounded-full text-white text-center text-2xl pt-4">
+                    <i class="fas fa-plus"></i>
+                    <div class="text-xs">category</div>
+                </a>
+                <a href="{{route('item.create')}}" class="border h-16 w-16 rounded-full text-white text-center text-2xl pt-4">
+                    <i class="fas fa-plus"></i>
+                    <div class="text-xs">Plat</div>
+                </a>
+            </div>
+        @endauth
 
-        <div class="fixed left-0 bottom-0 m-4 items-center flex gap-4">
-            <a href="{{route('category.create')}}" class="border  h-16 w-16 rounded-full text-white text-center text-2xl pt-4">
-                <i class="fas fa-plus"></i>
-                <div class="text-xs">category</div>
-            </a>
-            <a href="{{route('item.create')}}" class="border h-16 w-16 rounded-full text-white text-center text-2xl pt-4">
-                <i class="fas fa-plus"></i>
-                <div class="text-xs">Plat</div>
-            </a>
-        </div>
 
 
     </div>
