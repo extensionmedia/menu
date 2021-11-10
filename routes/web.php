@@ -30,3 +30,10 @@ Route::post('/category/activate', [CategoryController::class, 'activate'])->name
 Route::post('file/upload', [FileUploadController::class, 'upload'])->name('file.upload');
 Route::post('file/read', [FileUploadController::class, 'getFiles'])->name('file.read');
 Route::post('file/destroy', [FileUploadController::class, 'destroy'])->name('file.destroy');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

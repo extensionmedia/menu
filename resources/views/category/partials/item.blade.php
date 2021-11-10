@@ -8,7 +8,7 @@ input:checked ~ .dot {
     $show = false
 @endphp
 
-@if (!$show)
+@auth
     <div class="bg-gray-100 rounded-lg overflow-hidden">
         <div class="flex justify-between items-center py-1 px-1">
             <a href="{{route('category.edit', $category)}}" class="text-gray-500 px-1 hover:bg-blue-600 hover:text-gray-50 rounded-lg"><i class="fas fa-wrench"></i></a>
