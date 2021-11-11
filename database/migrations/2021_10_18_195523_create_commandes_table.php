@@ -15,6 +15,8 @@ class CreateCommandesTable extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
+            $table->string('UID');
+            $table->integer('table_id')->default(0);
             $table->boolean('is_active')->default(0);
             $table->timestamps();
         });

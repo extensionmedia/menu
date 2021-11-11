@@ -9,7 +9,9 @@ class Commande extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'is_active'
+        'is_active',
+        'UID',
+        'table_id'
     ];
 
     public function details(){

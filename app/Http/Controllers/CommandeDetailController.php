@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Commande;
 use App\Models\CommandeDetail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CommandeDetailController extends Controller
 {
@@ -36,13 +38,26 @@ class CommandeDetailController extends Controller
      */
     public function store(Request $request)
     {
-        $commande = Commande::where('is_active', 1)->first();
+        $UID = Session::has('UID')? Session::get('UID'): Str::uuid();
+        $table_id = $request->has('table_id')? $request->table_id: 0;
+        dd(Session::all());
+        $commande = Commande::where('is_active', 1)
+                            ->where('UID', $UID)
+                            ->where('table_id', $table_id)
+                            ->first();
         $qte = 1;
         if(!$commande){
+            Session::forget('UID');
+            Session::push('UID', $UID);
             Commande::create([
-                'is_active'     =>  1
+                'is_active'     =>  1,
+                'table_id'      =>  $table_id,
+                'UID'           =>  $UID
             ]);
-            $commande = Commande::where('is_active', 1)->first();
+            $commande = Commande::where('is_active', 1)
+                            ->where('UID', $UID)
+                            ->where('table_id', $table_id)
+                            ->first();
         }
 
         $item_id = $request->item_id;
