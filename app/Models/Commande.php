@@ -17,4 +17,8 @@ class Commande extends Model
     public function details(){
         return $this->hasMany(CommandeDetail::class);
     }
+
+    public function table(){
+        return $this->belongsTo(Table::class);
+    }
 }

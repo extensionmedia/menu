@@ -18,4 +18,5 @@ class CommandeDetail extends Model
     public function item(){
         return $this->hasOne(Item::class, 'id', 'item_id');
     }
+
 }

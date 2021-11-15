@@ -38,9 +38,11 @@ class CommandeDetailController extends Controller
      */
     public function store(Request $request)
     {
-        $UID = Session::has('UID')? Session::get('UID'): Str::uuid();
-        $table_id = $request->has('table_id')? $request->table_id: 0;
-        dd(Session::all());
+        //Session::forget('UID');
+        //dd(Session::all());
+        $UID = Session::has('UID')? Session::get('UID'): (string) Str::uuid();
+       // dd($UID);
+        $table_id = $request->has('table_id')? $request->table_id: 1;
         $commande = Commande::where('is_active', 1)
                             ->where('UID', $UID)
                             ->where('table_id', $table_id)
@@ -48,7 +50,7 @@ class CommandeDetailController extends Controller
         $qte = 1;
         if(!$commande){
             Session::forget('UID');
-            Session::push('UID', $UID);
+            Session::put('UID', $UID);
             Commande::create([
                 'is_active'     =>  1,
                 'table_id'      =>  $table_id,

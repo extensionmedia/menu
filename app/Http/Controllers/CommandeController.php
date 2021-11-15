@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Commande;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CommandeController extends Controller
 {
@@ -15,8 +17,11 @@ class CommandeController extends Controller
      */
     public function index()
     {
+        $UID = Session::has('UID')? Session::get('UID'): (string) Str::uuid();
         return view('commande.index')->with([
-            'commande'      =>      Commande::where('is_active', 1)->first()
+            'commande'      =>      Commande::where('is_active', 1)
+                                            ->where('UID', $UID)
+                                            ->first()
         ]);
     }
 
@@ -97,5 +102,20 @@ class CommandeController extends Controller
         }
 
         return $counter;
+    }
+
+    public function all(){
+        $allCommandes = Commande::orderBy('created_at', 'desc')->orderBy('is_active', 'asc')->get();
+        return view('commande.all')->with([
+            'commandes'     =>      $allCommandes
+        ]);
+    }
+
+    public function ticket(Request $request){
+        $id = $request->id;
+        $commande = Commande::find($id);
+        return view('commande.ticket')->with([
+            'commande'      =>      $commande
+        ]);
     }
 }
