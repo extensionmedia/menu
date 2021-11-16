@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Commande;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -16,7 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $commande = Commande::where('is_active', 1)->first();
+        $UID = Session::has('UID')? Session::get('UID'): (string) Str::uuid();
+        $commande = Commande::where('UID', $UID)->first();
 
         $categories = Category::orderBy('is_active', 'desc')->orderBy('level')->get()->each(function($c) use ($commande){
             $counter = 0;

@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Commande;
 use App\Models\CommandeDetail;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class CommandeDetailController extends Controller
 {
@@ -81,6 +81,8 @@ class CommandeDetailController extends Controller
         }
 
 
+        Session::flash('message', "Commande Modifié!!");
+        return back();
         return redirect(route('commande.index'));
 
         return [

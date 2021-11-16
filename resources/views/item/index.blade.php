@@ -1,6 +1,11 @@
 @extends('container.app')
 @section('content')
 
+    @if (Session::has('message'))
+        <div class="flash animate__animated animate__rubberBand rounded-lg absolute top-0 right-0 m-6 bg-green-500 text-white text-sm py-1 px-4 border border-green-600">
+            <i class="far fa-thumbs-up"></i> {{ Session::get('message') }}
+        </div>
+    @endif
 
     <div class="flex justify-center items-center py-4">
         <a href="{{route('home')}}" class="py-2 w-32 text-center rounded-full bg-green-600 bg-opacity-30 hover:bg-opacity-40 cursor-pointer">
@@ -59,6 +64,12 @@
                         }
                     });
                 });
+
+                if($('.flash').length > 0){
+                    var timer = setTimeout(() => {
+                        $('.flash').remove();
+                    }, 4000);
+                }
             });
     </script>
 
