@@ -1,9 +1,19 @@
-<div class="relative flex items-center justify-center py-2 px-4 md:px-2 bg-gray-50 bg-opacity-10 shadow">
+<div class="relative flex items-center justify-center py-2 px-4 md:px-2 shadow">
     <a href="{{route('home')}}" class="flex gap-2 items-center">
         <div class="text-white text-xl">
-            <img class="h-8" src="{{asset('img/logo.png')}}" alt="">
+            <img class="h-16" src="{{asset('img/logo.png')}}" alt="">
         </div>
-        <div class="text-gray-100 text-lg">{{config('app.name')}}</div>
+        <div class="">
+            <div class="text-yellow-500 text-xs">
+                Menu {{config('app.version')}}
+            </div>
+            <div class="text-red-500 text-lg font-bold">
+                {{config('app.name')}}
+            </div>
+            <div class="text-gray-500 text-xs">
+                Commande : <span class="numero_commande"></span>
+            </div>
+        </div>
     </a>
 
     @auth
@@ -19,5 +29,17 @@
         </a>
     @endauth
 
+    <script>
+        $(document).ready(function(){
+            $('.numero_commande').html('<i class="fas fa-sync fa-spin"></i>')
+            $.ajax({
+                url : "{{route('commande.number')}}",
+                methode : 'GET',
+                success : function(r){
+                    $('.numero_commande').html(r)
+                }
+            })
+        });
+    </script>
 
 </div>

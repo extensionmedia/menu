@@ -19,8 +19,7 @@ class CommandeController extends Controller
     {
         $UID = Session::has('UID')? Session::get('UID'): (string) Str::uuid();
         return view('commande.index')->with([
-            'commande'      =>      Commande::where('is_active', 1)
-                                            ->where('UID', $UID)
+            'commande'      =>      Commande::where('UID', $UID)
                                             ->first()
         ]);
     }
@@ -92,7 +91,8 @@ class CommandeController extends Controller
     }
 
     public function counter(){
-        $commande = Commande::where('is_active', 1)->first();
+        $UID = Session::has('UID')? Session::get('UID'): (string) Str::uuid();
+        $commande = Commande::where('UID', $UID)->first();
         $counter = 0;
 
         if($commande){
@@ -117,5 +117,27 @@ class CommandeController extends Controller
         return view('commande.ticket')->with([
             'commande'      =>      $commande
         ]);
+    }
+
+    public function getNumber(){
+        $UID = Session::has('UID')? Session::get('UID'): (string) Str::uuid();
+        $commande = Commande::where('UID', $UID)->first();
+        $id = 0;
+
+        if($commande){
+            return $commande->id;
+        }
+
+        return $id;
+    }
+
+    public function ticketClose(Request $request){
+        if($request->has('id')){
+            $commande = Commande::find($request->id);
+            if($commande){
+                $commande->is_active = 0;
+                $commande->save();
+            }
+        }
     }
 }

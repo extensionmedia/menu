@@ -8,13 +8,14 @@
             <div class="w-64 p-4">
                 @foreach ($commandes as $commande)
                     @if ($commande->is_active)
-                        <div data-id="{{$commande->id}}" class="show_ticket border mb-4 rounded-lg m-1 text-gray-600 flex items-center gap-2 py-4 px-2 hover:bg-gray-200 cursor-pointer">
+                        <div data-id="{{$commande->id}}" class="show_ticket border mb-4 rounded-lg m-1 text-gray-600 flex items-center gap-2 py-2 px-2 hover:bg-gray-200 cursor-pointer">
                             <i class="fas fa-circle text-green-500"></i>
                             <div class="flex-1">
-                                <div class="flex justify-between">
-                                    <span class="text-xs">
+                                <div class="flex justify-between items-center">
+                                    <div class="text-xs">
+                                        <div class="text-lg"># {{$commande->id}}</div>
                                         {{$commande->table->name}}
-                                    </span>
+                                    </div>
                                     <span class="text-xs">
                                         {{$commande->created_at->diffForHumans()}}
                                     </span>
@@ -22,13 +23,14 @@
                             </div>
                         </div>
                     @else
-                        <div data-id="{{$commande->id}}" class="show_ticket mb-4 rounded-lg m-1 border text-gray-600 flex items-center gap-2 py-4 px-2 hover:bg-gray-200 cursor-pointer">
+                        <div data-id="{{$commande->id}}" class="show_ticket mb-4 rounded-lg m-1 border text-gray-600 flex items-center gap-2 py-2 px-2 hover:bg-gray-200 cursor-pointer">
                             <i class="fas fa-circle text-red-500"></i>
                             <div class="flex-1">
-                                <div class="flex justify-between">
-                                    <span class="text-xs">
+                                <div class="flex justify-between items-center">
+                                    <div class="text-xs">
+                                        <div class="text-lg"># {{$commande->id}}</div>
                                         {{$commande->table->name}}
-                                    </span>
+                                    </div>
                                     <span class="text-xs">
                                         {{$commande->created_at->diffForHumans()}}
                                     </span>
@@ -74,6 +76,22 @@
                     }
                 })
 
+            })
+
+            $(document).on('click', '.close_ticket', function(){
+                var id = $(this).data('id');
+                $.ajax({
+                    url: "{{ route('commande.ticket.close') }}",
+                    data: {
+                        id: id,
+                        _token: $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: 'POST',
+                    type: 'POST',
+                    success: function(data){
+                        $('.show_ticket.border-green-500').trigger('click');
+                    }
+                })
             })
         });
     </script>
