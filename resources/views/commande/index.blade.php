@@ -3,12 +3,12 @@
 
 <div class="border rounded-lg overflow-hidden my-4">
     <div class="bg-gray-100 py-2 px-4 text-gray-800 text-sm">
-        <i class="fas fa-plus"></i> Ma commande
+        <i class="fas fa-utensils"></i> Ma commande
     </div>
     <div class="bg-blue-100 py-8">
         @if ($commande)
             @if ($commande->details->count())
-                <div class="md:w-3/5 mx-4 md:mx-auto py-4 flex items-center justify-between text-gray-800">
+                <div class="md:w-3/5 mx-1 pb-4 md:mx-auto flex items-center justify-between text-gray-800">
                     <div class="text-sm text-gray-900">
                         Commande N : {{$commande->id}}
                     </div>
@@ -16,7 +16,7 @@
                         {{$commande->created_at->diffForHumans()}}
                     </div>
                 </div>
-                <div class="bg-white md:w-3/5 mx-4 md:mx-auto rounded-lg overflow-hidden shadow-lg">
+                <div class="bg-white md:w-3/5 mx-1 md:mx-auto rounded-lg overflow-hidden shadow-lg">
                     @php
                         $total = 0
                     @endphp
