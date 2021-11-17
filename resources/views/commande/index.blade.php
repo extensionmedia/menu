@@ -6,36 +6,40 @@
         <i class="fas fa-plus"></i> Ma commande
     </div>
     <div class="bg-blue-100 pb-8">
-        @if ($commande->details->count())
-            <div class="md:w-3/5 mx-4 md:mx-auto py-4 flex items-center justify-between text-gray-800">
-                <div class="text-sm text-gray-900">
-                    Commande N : {{$commande->id}}
+        @if ($commande)
+            @if ($commande->details->count())
+                <div class="md:w-3/5 mx-4 md:mx-auto py-4 flex items-center justify-between text-gray-800">
+                    <div class="text-sm text-gray-900">
+                        Commande N : {{$commande->id}}
+                    </div>
+                    <div class="text-xs text-gray-400">
+                        {{$commande->created_at->diffForHumans()}}
+                    </div>
                 </div>
-                <div class="text-xs text-gray-400">
-                    {{$commande->created_at->diffForHumans()}}
-                </div>
-            </div>
-            <div class="bg-white md:w-3/5 mx-4 md:mx-auto rounded-lg overflow-hidden shadow-lg">
-                @php
-                    $total = 0
-                @endphp
-                @foreach ($commande->details as $detail)
+                <div class="bg-white md:w-3/5 mx-4 md:mx-auto rounded-lg overflow-hidden shadow-lg">
                     @php
-                        $total += $detail->qte * $detail->item->price
+                        $total = 0
                     @endphp
-                    @include('commande.partials.item')
-                @endforeach
-                <div class="px-4 border-dashed border-t-2 text-gray-800 text-right bg-gray-100">
-                    <div class="flex justify-between items-center py-4">
-                        <div class="text-lg text-gray-900">
-                            Element(s) : {{$commande->details->sum('qte')}}
-                        </div>
-                        <div class="text-xl text-black">
-                            Total : {{$total}} DH
+                    @foreach ($commande->details as $detail)
+                        @php
+                            $total += $detail->qte * $detail->item->price
+                        @endphp
+                        @include('commande.partials.item')
+                    @endforeach
+                    <div class="px-4 border-dashed border-t-2 text-gray-800 text-right bg-gray-100">
+                        <div class="flex justify-between items-center py-4">
+                            <div class="text-lg text-gray-900">
+                                Element(s) : {{$commande->details->sum('qte')}}
+                            </div>
+                            <div class="text-xl text-black">
+                                Total : {{$total}} DH
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @else
+                khaaawi
+            @endif
         @else
             khaaawi
         @endif
