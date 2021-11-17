@@ -36,7 +36,7 @@
         <div class=""></div>
         <div class="">
             <div class="">
-                <b> Plats : </b>{{5}}
+                <b> Plats : </b>{{$detail->sum('qte')}}
             </div>
             <div class="">
                 <b> Total : </b>{{$total}} DH
