@@ -1,62 +1,50 @@
 @extends('container.app')
 @section('content')
 
-    <div class="bg-white py-8 px-4 text-gray-600">
+<div class="border rounded-lg overflow-hidden my-4">
+    <div class="bg-gray-100 py-2 px-4 text-gray-800 text-sm">
+        <i class="fas fa-plus"></i> Ma commande
+    </div>
+    <div class="bg-blue-100 pb-8">
         @if ($commande->details->count())
-            @php
-                $total = 0
-            @endphp
-            @foreach ($commande->details as $c_d)
-                @if ($c_d->item)
-                    <div class="border-b bg-gray-50 py-1 px-4 flex items-center">
-                        <div class="w-48">
-                            <img class="h-14 rounded-full" src="{{$c_d->item->image}}" alt="">
+            <div class="md:w-3/5 mx-4 md:mx-auto py-4 flex items-center justify-between text-gray-800">
+                <div class="text-sm text-gray-900">
+                    Commande N : {{$commande->id}}
+                </div>
+                <div class="text-xs text-gray-400">
+                    {{$commande->created_at->diffForHumans()}}
+                </div>
+            </div>
+            <div class="bg-white md:w-3/5 mx-4 md:mx-auto rounded-lg overflow-hidden shadow-lg">
+                @php
+                    $total = 0
+                @endphp
+                @foreach ($commande->details as $detail)
+                    @php
+                        $total += $detail->qte * $detail->item->price
+                    @endphp
+                    @include('commande.partials.item')
+                @endforeach
+                <div class="px-4 border-dashed border-t-2 text-gray-800 text-right bg-gray-100">
+                    <div class="flex justify-between items-center py-4">
+                        <div class="text-lg text-gray-900">
+                            Element(s) : {{$commande->details->sum('qte')}}
                         </div>
-                        <div class="flex-1">
-                            <div class="flex justify-between">
-                                <div class="">
-                                    <div class="font-bold text-gray-800">{{ $c_d->item->name }}</div>
-                                    <div class="text-sm">{{ $c_d->item->description }}</div>
-
-                                </div>
-                                <div class="flex items-center gap-8">
-                                    <div class="flex flex-1 gap-8">
-                                        <div class="text-pink-600">
-                                            <input class="w-14 border text-center" min="1" type="number" value="{{$c_d->qte}}">
-                                        </div>
-                                        <div class="">{{ $c_d->item->price }} MAD</div>
-                                        @php
-                                            $total += $c_d->item->price
-                                        @endphp
-                                    </div>
-                                    <a href="" data-id="{{$c_d->id}}" class="destroy_image w-14 text-center text-red-500">
-                                        <i class="far fa-trash-alt"></i>
-                                    </a>
-
-                                </div>
-                            </div>
+                        <div class="text-xl text-black">
+                            Total : {{$total}} DH
                         </div>
                     </div>
-                @endif
-
-            @endforeach
-                <div class="bg-green-50 border boder-green-100 text-green-800 text-right py-4 px-4 rounded text-2xl mt-4">
-                    Total : {{$total}} MAD
                 </div>
-        @else
-            <div class="bg-red-50 border border-red-100 text-red-800 rounded py-4 px-4 text-center">
-                Menu khawi
             </div>
+        @else
+            khaaawi
         @endif
-
-
-
-
     </div>
+</div>
 
     <script>
         $(document).ready(function(){
-            $(document).on('click', '.destroy_image', function(e){
+            $(document).on('click', '.destroy_item', function(e){
                 e.preventDefault();
                 var that = $(this);
                 new Swal({
