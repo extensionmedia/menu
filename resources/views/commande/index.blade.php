@@ -5,7 +5,7 @@
     <div class="bg-gray-100 py-2 px-4 text-gray-800 text-sm">
         <i class="fas fa-plus"></i> Ma commande
     </div>
-    <div class="bg-blue-100 pb-8">
+    <div class="bg-blue-100 py-8">
         @if ($commande)
             @if ($commande->details->count())
                 <div class="md:w-3/5 mx-4 md:mx-auto py-4 flex items-center justify-between text-gray-800">
@@ -38,10 +38,14 @@
                     </div>
                 </div>
             @else
-                khaaawi
+                <div class="bg-white md:w-3/5 mx-4 py-8 md:mx-auto rounded-lg overflow-hidden shadow-lg">
+                    @include('commande.partials.empty')
+                </div>
             @endif
         @else
-            khaaawi
+            <div class="bg-white md:w-3/5 mx-4 py-8 md:mx-auto rounded-lg overflow-hidden shadow-lg">
+                @include('commande.partials.empty')
+            </div>
         @endif
     </div>
 </div>
