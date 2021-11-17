@@ -32,7 +32,7 @@
                 <form method="POST" action="{{route('commande.item.store')}}" class="flex justify-between items-end">
                     @csrf
                     <input type="hidden" name="item_id" value="{{$item->id}}">
-                    <button class="py-2 px-4 bg-green-800 text-white rounded border border-green-700">Ajouter à ma commande</button>
+                    <button class="py-2 px-4 bg-green-800 text-white rounded border border-green-700"><i class="fas fa-plus"></i> Ajouter à ma commande</button>
                 </form>
                 @auth
                     <div class="flex items-center">
