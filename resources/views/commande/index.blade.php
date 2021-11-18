@@ -37,6 +37,12 @@
                         </div>
                     </div>
                 </div>
+
+                    @include('commande.partials.livraison')
+
+                <div class="md:w-3/5 mx-1 md:mx-auto mt-8">
+                    <button class="w-full md:w-64 bg-green-600 text-white py-2 px-12 rounded-lg">Passer Ma Commande</button>
+                </div>
             @else
                 <div class="bg-white md:w-3/5 mx-4 py-8 md:mx-auto rounded-lg overflow-hidden shadow-lg">
                     @include('commande.partials.empty')
