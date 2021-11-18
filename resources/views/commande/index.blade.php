@@ -26,12 +26,12 @@
                         @endphp
                         @include('commande.partials.item')
                     @endforeach
-                    <div class="px-4 border-dashed border-t-2 text-gray-800 text-right bg-gray-100">
+                    <div class="px-4 border-dashed border-t-2 text-gray-50 text-right bg-gray-600">
                         <div class="flex justify-between items-center py-4">
-                            <div class="text-lg text-gray-900">
+                            <div class="text-lg text-gray-50">
                                 Element(s) : {{$commande->details->sum('qte')}}
                             </div>
-                            <div class="text-xl text-black">
+                            <div class="text-xl text-gray-50">
                                 Total : {{$total}} DH
                             </div>
                         </div>

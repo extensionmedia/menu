@@ -1,4 +1,4 @@
-<div class="flex items-center bg-white justify-between text-gray-600 px-4 py-2 border-b border-dashed hover:bg-gray-50 cursor-pointer">
+<div class="md:flex mb-1 items-center bg-white justify-between text-gray-600 px-4 py-2 border-2 border-dashed hover:bg-gray-50">
     <div class="">
         <div class="text-gray-500 text-sm font-bold">{{$detail->item->category->name}}</div>
         <div class="text-gray-500">{{$detail->item->name}}</div>

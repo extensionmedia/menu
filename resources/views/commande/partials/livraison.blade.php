@@ -1,4 +1,4 @@
-<div class="md:w-3/5 mx-1 md:mx-auto">
+<div class="md:w-3/5 mx-1 md:mx-auto py-4">
     <div class="flex items-center gap-4 my-4">
         <label class="flex items-center space-x-3">
             <input checked type="checkbox" name="livraison_id" value="1" class="unique form-tick appearance-none h-6 w-6 border border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none">
