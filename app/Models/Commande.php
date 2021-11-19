@@ -11,7 +11,11 @@ class Commande extends Model
     protected $fillable = [
         'is_active',
         'UID',
-        'table_id'
+        'table_id',
+        'livraison_id',
+        'client_name',
+        'client_telephone',
+        'livraison_time'
     ];
 
     public function details(){

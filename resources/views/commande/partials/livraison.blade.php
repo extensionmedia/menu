@@ -29,10 +29,10 @@
     </div>
 
     <div class="mb-4">
-        <label for="recuperation" class="block">
+        <label for="livraison_time" class="block">
             Heure de récupération (*)
         </label>
-        <select class="border rounded-lg py-1 px-2 bg-white text-gray-800 w-full" id="recuperation" name="recuperation">
+        <select class="border rounded-lg py-1 px-2 bg-white text-gray-800 w-full" id="livraison_time" name="livraison_time">
             <option value="15min">15 Minutes</option>
             <option value="30min">30 Minutes</option>
             <option value="1h">1 Heure</option>

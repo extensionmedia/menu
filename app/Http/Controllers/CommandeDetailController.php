@@ -43,6 +43,7 @@ class CommandeDetailController extends Controller
         $UID = Session::has('UID')? Session::get('UID'): (string) Str::uuid();
        // dd($UID);
         $table_id = $request->has('table_id')? $request->table_id: 1;
+        $livraison_id = $request->has('livraison_id')? $request->livraison_id: 1;
         $commande = Commande::where('is_active', 1)
                             ->where('UID', $UID)
                             ->where('table_id', $table_id)
@@ -54,7 +55,8 @@ class CommandeDetailController extends Controller
             Commande::create([
                 'is_active'     =>  1,
                 'table_id'      =>  $table_id,
-                'UID'           =>  $UID
+                'UID'           =>  $UID,
+                'livraison_id'  =>  $livraison_id
             ]);
             $commande = Commande::where('is_active', 1)
                             ->where('UID', $UID)

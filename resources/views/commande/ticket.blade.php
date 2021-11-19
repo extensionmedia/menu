@@ -44,6 +44,12 @@
         </div>
     </div>
 
+    @if ($commande->livraison_id == 1)
+        Commande sur place
+    @else
+        Commande EMPORTE
+    @endif
+
     @if ($commande->is_active)
         <div class="py-4 text-center">
             <button data-id="{{$commande->id}}" class="close_ticket bg-green-500 py-2 w-32 text-white text-sm hover:bg-green-600 cursor-pointer border border-green-600 rounded-lg">Fermer Ticket</button>

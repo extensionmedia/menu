@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Commande;
+use App\Models\CommandeQueue;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -42,7 +43,35 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $commande_id = $request->has('commande_id')? $request->commande_id: 0;
+        $commande = Commande::find($commande_id);
+        if($commande){
+            $commande->client_name = $request->has('client_name')? $request->client_name: "";
+            $commande->client_telephone = $request->has('client_telephone')? $request->client_telephone: "";
+            $commande->livraison_time = $request->has('livraison_time')? $request->livraison_time: "";
+            $commande->livraison_id = $request->has('livraison_id')? $request->livraison_id: 1;
+            $commande->save();
+
+            CommandeQueue::create([
+                'commande_id'   =>  $commande_id
+            ]);
+            Session::forget('UID');
+            Session::flash('message', "Commande Confirmé!!");
+            return back();
+            return [
+                'status'    =>  'success',
+                'message'   =>  'Commande confirmed'
+            ];
+
+        }else{
+            Session::flash('message', "Error Commande Non Confirmé!!");
+            return back();
+            return [
+                'status'    =>  'error',
+                'message'   =>  'Error Commande confirmation'
+            ];
+        }
+
     }
 
     /**
