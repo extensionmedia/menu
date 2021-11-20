@@ -35,19 +35,22 @@ input:checked ~ .dot {
         </div>
     </div>
 @else
-    <div class="border-2 rounded-lg h-40 w-40 overflow-hidden hover:border-red-500 relative @if ($category->commande) border-green-600 border-4 @endif">
-        <a href="{{route('items', $category)}}">
-            <img class="h-full" src="{{$category->image}}" alt="">
-        </a>
-        <div class="absolute bottom-0 left-0 right-0 bg-red-600 bg-opacity-80 text-white py-2 text-center text-xs">
-            {{$category->name}}
-        </div>
-        @if ($category->commande)
-            <div class="absolute top-0 right-0 -m-1 h-8 w-8 flex items-center bg-yellow-400 text-gray-900 justify-center rounded-full border-green-600 border-4 shadow-lg">
-                {{$category->commande}}
+    @if($category->is_active)
+        <div class="border-2 rounded-lg h-40 w-40 overflow-hidden hover:border-red-500 relative @if ($category->commande) border-green-600 border-4 @endif">
+            <a href="{{route('items', $category)}}">
+                <img class="h-full" src="{{$category->image}}" alt="">
+            </a>
+            <div class="absolute bottom-0 left-0 right-0 bg-red-600 bg-opacity-80 text-white py-2 text-center text-xs">
+                {{$category->name}}
             </div>
-        @endif
-    </div>
+            @if ($category->commande)
+                <div class="absolute top-0 right-0 -m-1 h-8 w-8 flex items-center bg-yellow-400 text-gray-900 justify-center rounded-full border-green-600 border-4 shadow-lg">
+                    {{$category->commande}}
+                </div>
+            @endif
+        </div>
+    @endif
+
 @endif
 
 

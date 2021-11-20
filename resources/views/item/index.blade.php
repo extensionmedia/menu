@@ -16,7 +16,13 @@
     <div class="py-4">
 
         @foreach ($items as $item)
-            @include('item.partials.item')
+            @auth
+                @include('item.partials.item')
+            @else
+                @if($item->is_active)
+                    @include('item.partials.item')
+                @endif
+            @endauth
         @endforeach
         <script>
             $(document).ready(function(){
