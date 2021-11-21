@@ -50,6 +50,7 @@ class CommandeController extends Controller
             $commande->client_telephone = $request->has('client_telephone')? $request->client_telephone: "";
             $commande->livraison_time = $request->has('livraison_time')? $request->livraison_time: "";
             $commande->livraison_id = $request->has('livraison_id')? $request->livraison_id: 1;
+            $commande->is_active = 1;
             $commande->save();
 
             CommandeQueue::create([
@@ -134,10 +135,24 @@ class CommandeController extends Controller
     }
 
     public function all(){
-        $allCommandes = Commande::orderBy('is_active', 'DESC')->orderBy('created_at', 'desc')->get();
+        $allCommandes = Commande::where('is_active', '<', 2)->orderBy('is_active', 'ASC')->orderBy('created_at', 'desc')->get();
         return view('commande.all')->with([
             'commandes'     =>      $allCommandes
         ]);
+    }
+
+    public function closed(){
+        $allCommandes = Commande::where('is_active', '=', 2)->orderBy('created_at', 'desc')->get();
+        $html = "empty";
+        foreach($allCommandes as $k=>$c){
+            if($k == 0){
+                $html = view('commande.partials.left_item')->with(['commande'=>$c]);
+            }else{
+                $html = $html . "" . view('commande.partials.left_item')->with(['commande'=>$c]);
+            }
+        }
+        return $html;
+
     }
 
     public function ticket(Request $request){
@@ -164,7 +179,7 @@ class CommandeController extends Controller
         if($request->has('id')){
             $commande = Commande::find($request->id);
             if($commande){
-                $commande->is_active = 0;
+                $commande->is_active = 2;
                 $commande->save();
             }
         }

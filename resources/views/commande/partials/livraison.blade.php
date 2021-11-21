@@ -13,22 +13,22 @@
     </div>
 </div>
 
-<div class="details hidden bg-white md:w-3/5 mx-1 md:mx-auto rounded-lg overflow-hidden shadow-lg text-gray-600 px-4 py-4 border-4 border-dashed border-green-300">
+<div class="bg-white md:w-3/5 mx-1 md:mx-auto rounded-lg overflow-hidden shadow-lg text-gray-600 px-4 py-4 border-4 border-dashed border-green-300">
     <div class="mb-4">
         <label for="client_name" class="block">
             Votre Nom (*)
         </label>
-        <input class="border rounded-lg py-1 px-2 bg-white text-gray-800 w-full" type="text" id="client_name" name="client_name" placeholder="votre nom">
+        <input class="border rounded-lg py-1 px-2 bg-white text-gray-800 w-full" required type="text" id="client_name" name="client_name" placeholder="votre nom">
     </div>
 
     <div class="mb-4">
         <label for="client_telephone" class="block">
             Votre Téléphone (*)
         </label>
-        <input class="border rounded-lg py-1 px-2 bg-white text-gray-800 w-full" type="text" id="client_telephone" name="client_telephone" placeholder="0666666666">
+        <input class="border rounded-lg py-1 px-2 bg-white text-gray-800 w-full" required type="text" id="client_telephone" name="client_telephone" placeholder="0666666666">
     </div>
 
-    <div class="mb-4">
+    <div class="mb-4 details hidden">
         <label for="livraison_time" class="block">
             Heure de récupération (*)
         </label>

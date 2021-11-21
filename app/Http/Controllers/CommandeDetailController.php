@@ -44,7 +44,7 @@ class CommandeDetailController extends Controller
        // dd($UID);
         $table_id = $request->has('table_id')? $request->table_id: 1;
         $livraison_id = $request->has('livraison_id')? $request->livraison_id: 1;
-        $commande = Commande::where('is_active', 1)
+        $commande = Commande::where('is_active', 0)
                             ->where('UID', $UID)
                             ->where('table_id', $table_id)
                             ->first();
@@ -53,12 +53,12 @@ class CommandeDetailController extends Controller
             Session::forget('UID');
             Session::put('UID', $UID);
             Commande::create([
-                'is_active'     =>  1,
+                'is_active'     =>  0,
                 'table_id'      =>  $table_id,
                 'UID'           =>  $UID,
                 'livraison_id'  =>  $livraison_id
             ]);
-            $commande = Commande::where('is_active', 1)
+            $commande = Commande::where('is_active', 0)
                             ->where('UID', $UID)
                             ->where('table_id', $table_id)
                             ->first();

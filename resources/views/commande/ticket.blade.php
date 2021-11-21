@@ -3,10 +3,14 @@
         <div class="">
             <b> Tiket : </b>{{$commande->id}}
         </div>
-        @if ($commande->is_active)
+        @if ($commande->is_active == 1)
             <i class="fas fa-circle text-green-500"></i>
         @else
-            <i class="fas fa-circle text-red-500"></i>
+            @if ($commande->is_active == 0)
+                <i class="fas fa-circle text-gray-300"></i>
+            @else
+                <i class="fas fa-circle text-red-500"></i>
+            @endif
         @endif
     </div>
 
@@ -79,7 +83,7 @@
         </div>
     @endif
 
-    @if ($commande->is_active)
+    @if ($commande->is_active == 1)
         <div class="py-4 text-center">
             <button data-id="{{$commande->id}}" class="close_ticket bg-green-500 py-2 w-32 text-white text-sm hover:bg-green-600 cursor-pointer border border-green-600 rounded-lg">Fermer Ticket</button>
         </div>

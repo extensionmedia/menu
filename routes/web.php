@@ -14,6 +14,7 @@ Route::get('/commande', [CommandeController::class, 'index'])->name('commande.in
 Route::post('/commande', [CommandeController::class, 'store'])->name('commande.store');
 Route::get('/commande/counter', [CommandeController::class, 'counter'])->name('commande.counter');
 Route::get('/commande/all', [CommandeController::class, 'all'])->name('commande.all');
+Route::get('/commande/closed', [CommandeController::class, 'closed'])->name('commande.closed');
 Route::post('/commande/ticket', [CommandeController::class, 'ticket'])->name('commande.ticket');
 Route::post('/commande/ticket/close', [CommandeController::class, 'ticketClose'])->name('commande.ticket.close');
 Route::get('/commande/number', [CommandeController::class, 'getNumber'])->name('commande.number');
