@@ -45,15 +45,45 @@
     </div>
 
     @if ($commande->livraison_id == 1)
+    <div class="bg-blue-600 text-white rounded-lg py-2 px-4">
         Commande sur place
+    </div>
+
     @else
-        Commande EMPORTE
+        <div class="bg-pink-600 text-white py-1 px-4 inline text-lg">
+            Commande EMPORTE
+        </div>
+        <div class="border-b bg-pink-600 text-white border-dashed py-1 px-4 flex justify-between items-center">
+            <div class="">
+                Client :
+            </div>
+            <div class="">
+                {{$commande->client_name}}
+            </div>
+        </div>
+        <div class="border-b bg-pink-600 text-white border-dashed py-1 px-4 flex justify-between items-center">
+            <div class="">
+                Téléphone :
+            </div>
+            <div class="">
+                {{$commande->client_telephone}}
+            </div>
+        </div>
+        <div class="border-b bg-pink-600 text-white border-dashed py-1 px-4 flex justify-between items-center">
+            <div class="">
+                Récupération dans :
+            </div>
+            <div class="">
+                {{$commande->livraison_time}}
+            </div>
+        </div>
     @endif
 
     @if ($commande->is_active)
         <div class="py-4 text-center">
             <button data-id="{{$commande->id}}" class="close_ticket bg-green-500 py-2 w-32 text-white text-sm hover:bg-green-600 cursor-pointer border border-green-600 rounded-lg">Fermer Ticket</button>
         </div>
+
     @endif
 
 </div>

@@ -14,7 +14,15 @@
                                 <div class="flex justify-between items-center">
                                     <div class="text-xs">
                                         <div class="text-lg"># {{$commande->id}}</div>
-                                        {{$commande->table->name}}
+                                        @if ($commande->livraison_id == 1)
+                                            <div class="bg-blue-600 text-white px-4 inline text-xs rounded">
+                                                Sur Place
+                                            </div>
+                                        @else
+                                            <div class="bg-pink-600 text-white px-4 inline text-xs rounded">
+                                                EMPORTE
+                                            </div>
+                                        @endif
                                     </div>
                                     <span class="text-xs">
                                         {{$commande->created_at->diffForHumans()}}
@@ -29,7 +37,15 @@
                                 <div class="flex justify-between items-center">
                                     <div class="text-xs">
                                         <div class="text-lg"># {{$commande->id}}</div>
-                                        {{$commande->table->name}}
+                                        @if ($commande->livraison_id == 1)
+                                            <div class="bg-blue-600 text-white px-4 inline text-xs rounded">
+                                                Sur Place
+                                            </div>
+                                        @else
+                                            <div class="bg-pink-600 text-white px-4 inline text-xs rounded">
+                                                EMPORTE
+                                            </div>
+                                        @endif
                                     </div>
                                     <span class="text-xs">
                                         {{$commande->created_at->diffForHumans()}}
