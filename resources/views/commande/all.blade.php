@@ -89,6 +89,9 @@
                     success: function(data){
                         $('.ticket').html(data);
                         $('.loader').remove()
+                    },
+                    error: function(){
+                        $('.loader').remove()
                     }
                 })
 
