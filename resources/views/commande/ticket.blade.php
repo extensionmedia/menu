@@ -45,7 +45,7 @@
     </div>
 
     @if ($commande->livraison_id == 1)
-    <div class="bg-blue-600 text-white rounded-lg py-2 px-4">
+    <div class="bg-blue-600 text-white rounded-lg py-2 px-4 inline">
         Commande sur place
     </div>
 
