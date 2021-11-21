@@ -134,7 +134,7 @@ class CommandeController extends Controller
     }
 
     public function all(){
-        $allCommandes = Commande::orderBy('created_at', 'desc')->orderBy('is_active', 'asc')->get();
+        $allCommandes = Commande::orderBy('is_active', 'asc')->orderBy('created_at', 'desc')->get();
         return view('commande.all')->with([
             'commandes'     =>      $allCommandes
         ]);
