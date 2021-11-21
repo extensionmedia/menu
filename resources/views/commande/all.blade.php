@@ -5,7 +5,7 @@
             <i class="fas fa-plus"></i> Liste des commandes
         </div>
         <div class="bg-white flex">
-            <div class="w-64 p-4 overflow-y-auto" style="height: 600px">
+            <div class="w-72 p-4 overflow-y-auto" style="height: 600px">
                 @foreach ($commandes as $commande)
                     @if ($commande->is_active)
                         <div data-id="{{$commande->id}}" class="show_ticket border mb-4 rounded-lg m-1 text-gray-600 flex items-center gap-2 py-2 px-2 hover:bg-gray-200 cursor-pointer">
