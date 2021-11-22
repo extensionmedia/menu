@@ -204,4 +204,11 @@ class CommandeController extends Controller
             return $html;
         }
     }
+
+    public function queue(){
+        $queues = CommandeQueue::all()->toArray();
+        CommandeQueue::truncate();
+        return $queues;
+    }
+
 }

@@ -11,4 +11,8 @@ class CommandeQueue extends Model
     protected $fillable = [
         'commande_id'
     ];
+
+    public function commande(){
+        return $this->belongsTo(Commande::class, 'commande_id', 'id');
+    }
 }
