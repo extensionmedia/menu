@@ -184,4 +184,24 @@ class CommandeController extends Controller
             }
         }
     }
+
+    public function getBy(Request $request){
+        if($request->has('livraison_id')){
+            $livraison_id = $request->livraison_id;
+            if($livraison_id > 0){
+                $allCommandes = Commande::where('livraison_id', $livraison_id)->where('is_active', '<', 2)->orderBy('created_at', 'desc')->get();
+            }else{
+                $allCommandes = Commande::where('is_active', '<', 2)->orderBy('created_at', 'desc')->get();
+            }
+            $html = "empty";
+            foreach($allCommandes as $k=>$c){
+                if($k == 0){
+                    $html = view('commande.partials.left_item')->with(['commande'=>$c]);
+                }else{
+                    $html = $html . "" . view('commande.partials.left_item')->with(['commande'=>$c]);
+                }
+            }
+            return $html;
+        }
+    }
 }

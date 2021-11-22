@@ -21,15 +21,17 @@
             <div class="w-72 p-4 overflow-y-auto" style="height: 600px">
                 <div class="flex items-center justify-between text-gray-800 px-1 pb-4">
                     <div class="">Filtrer</div>
-                    <select class="py-1 text-xs rounded border border-gray-300" name="livraison_id" id="livraison_id">
+                    <select class="livraison_id_change py-1 text-xs rounded border border-gray-300" name="livraison_id" id="livraison_id">
                         <option value="2">Emporté</option>
                         <option value="1">Sur place</option>
-                        <option value="0">Tous</option>
+                        <option selected value="0">Tous</option>
                     </select>
                 </div>
-                @foreach ($commandes as $commande)
-                    @include('commande.partials.left_item')
-                @endforeach
+                <div class="all_container">
+                    @foreach ($commandes as $commande)
+                        @include('commande.partials.left_item')
+                    @endforeach
+                </div>
 
                 <div class="px-1 pt-4">
                     <label for="toggle" class="flex items-center cursor-pointer">
@@ -129,9 +131,33 @@
                         }
                     })
                 }
-
-
             })
+
+            $('.livraison_id_change').on('change', function(){
+                var livraison_id = $(this).val();
+                var loader = `
+                        <div class="loader text-center text-gray-600">
+                            <i class="fas fa-sync fa-spin"></i>
+                        </div>
+                        `;
+                    $('.all_container').html(loader);
+
+                $.ajax({
+                    url: "{{ route('commande.getBy') }}",
+                    data: {
+                        'livraison_id'  :   livraison_id
+                    },
+                    method: 'GET',
+                    type: 'GET',
+                    success: function(data){
+                        $('.all_container').html(data);
+                        $('.loader').remove()
+                    },
+                    error: function(){
+                        $('.loader').remove()
+                    }
+                })
+            });
         });
     </script>
 

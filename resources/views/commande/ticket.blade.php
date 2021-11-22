@@ -1,4 +1,4 @@
-<div class="w-96 mx-auto bg-white border my-4 rounded-lg px-2 py-4 text-gray-600">
+<div class="w-3/5 mx-auto bg-white border my-4 rounded-lg px-2 py-4 text-gray-600">
     <div class="flex justify-between items-center border-gray-400 pb-1">
         <div class="">
             <b> Tiket : </b>{{$commande->id}}
@@ -49,10 +49,33 @@
     </div>
 
     @if ($commande->livraison_id == 1)
-    <div class="bg-blue-600 text-white rounded-lg py-1 px-4 inline text-xs">
-        Commande sur place
-    </div>
-
+        <div class="bg-blue-600 text-white py-1 px-4 inline text-lg">
+            Commande sur place
+        </div>
+        <div class="border-b bg-blue-600 text-white border-dashed py-1 px-4 flex justify-between items-center">
+            <div class="">
+                Client :
+            </div>
+            <div class="">
+                {{$commande->client_name}}
+            </div>
+        </div>
+        <div class="border-b bg-blue-600 text-white border-dashed py-1 px-4 flex justify-between items-center">
+            <div class="">
+                Téléphone :
+            </div>
+            <div class="">
+                {{$commande->client_telephone}}
+            </div>
+        </div>
+        <div class="border-b bg-blue-600 text-white border-dashed py-1 px-4 flex justify-between items-center">
+            <div class="">
+                Récupération dans :
+            </div>
+            <div class="">
+                {{$commande->livraison_time}}
+            </div>
+        </div>
     @else
         <div class="bg-pink-600 text-white py-1 px-4 inline text-lg">
             Commande EMPORTE
