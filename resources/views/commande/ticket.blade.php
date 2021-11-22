@@ -2,7 +2,7 @@
 <div class="flash animate__animated animate__rubberBand rounded-lg absolute top-0 right-0 m-6 bg-green-500 text-white text-sm py-1 px-4 border border-green-600">
     <i class="far fa-thumbs-up"></i> {{ Session::get('message') }}
 </div>
-@endif    
+@endif
 <div class="w-3/5 mx-auto flex justify-end py-4">
     <button data-commande="{{$commande->id}}" class="destroy_commande bg-red-600 text-white px-2 py-1 rounded-lg text-xs">
         <i class="far fa-trash-alt"></i> Supprimer
@@ -31,7 +31,8 @@
         </div>
     </div>
     @php
-        $total = 0
+        $total = 0;
+        $qte = 0;
     @endphp
     @foreach ($commande->details as $detail)
         <div class="border-b border-dashed py-1 flex justify-between items-center">
@@ -43,7 +44,8 @@
             </div>
         </div>
         @php
-            $total += $detail->item->price * $detail->qte
+            $total += $detail->item->price * $detail->qte;
+            $qte += $detail->qte;
         @endphp
     @endforeach
 
@@ -51,7 +53,7 @@
         <div class=""></div>
         <div class="">
             <div class="">
-                <b> Plats : </b>{{$detail->sum('qte')}}
+                <b> Plats : </b>{{$qte}}
             </div>
             <div class="">
                 <b> Total : </b>{{$total}} DH
