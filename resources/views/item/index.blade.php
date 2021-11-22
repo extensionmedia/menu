@@ -8,7 +8,7 @@
     @endif
 
     <div class="flex justify-center items-center py-4">
-        <a href="{{route('home')}}" class="py-2 w-32 text-center rounded-full bg-green-600 bg-opacity-30 hover:bg-opacity-40 cursor-pointer">
+        <a href="{{route('home')}}" class="py-3 w-full md:px-6 md:w-auto text-center text-xl rounded-full bg-green-600 bg-opacity-30 hover:bg-opacity-40 cursor-pointer">
             <i class="fas fa-arrow-left"></i>
             {{$category->name}}
         </a>
