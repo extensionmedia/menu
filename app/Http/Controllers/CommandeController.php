@@ -115,16 +115,26 @@ class CommandeController extends Controller
      * @param  \App\Models\Commande  $commande
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Commande $commande)
+    public function destroy(Request $request)
     {
-       foreach($commande->details() as $d){
-           $d->delete();
-       }
-       $commande->delete();
-       return [
-           'status'     =>  'success',
-           'message'    =>  'Commande Supprimé'
-       ];
+
+        if($request->has('commande')){
+            $commande = Commande::find($request->commande);
+            if($commande){
+                foreach($commande->details() as $d){
+                    $d->delete();
+                }
+                $commande->delete();
+                return [
+                    'status'     =>  'success',
+                    'message'    =>  'Commande Supprimé'
+                ];
+            }
+        }
+        return [
+            'status'     =>  'error',
+            'message'    =>  'Commande NON Supprimé'
+        ];
     }
 
     public function counter(){

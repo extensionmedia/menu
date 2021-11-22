@@ -159,25 +159,25 @@
                 })
             });
 
-            var processing_queue = false;
+            // var processing_queue = false;
 
-            var timer = setInterval(() => {
-                if(!processing_queue){
-                    processing_queue = true;
-                    $.ajax({
-                        url: "{{ route('commande.queue') }}",
-                        method: 'GET',
-                        type: 'GET',
-                        success: function(data){
-                            processing_queue = false;
-                            if(data){
-                                console.log(data);
-                            }
-                        }
-                    });                    
-                }
+            // var timer = setInterval(() => {
+            //     if(!processing_queue){
+            //         processing_queue = true;
+            //         $.ajax({
+            //             url: "{{ route('commande.queue') }}",
+            //             method: 'GET',
+            //             type: 'GET',
+            //             success: function(data){
+            //                 processing_queue = false;
+            //                 if(data){
+            //                     console.log(data);
+            //                 }
+            //             }
+            //         });
+            //     }
 
-            }, 2000);
+            // }, 2000);
 
             $(document).on('click', '.destroy_commande', function(e){
                     e.preventDefault();
