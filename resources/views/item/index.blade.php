@@ -81,7 +81,7 @@
 
                 $('.show_loader').click(function(){
                     $(this).find('i').remove();
-                    $(this).prepend('<i class="fas fa-sync fa-spin"></i>');
+                    $(this).html('<i class="fas fa-sync fa-spin"></i> En cours...');
                     $(this).prop('disabled', true).closest( "form" ).submit();
                 })
 
