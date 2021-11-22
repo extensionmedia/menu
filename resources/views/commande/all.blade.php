@@ -179,6 +179,34 @@
 
             }, 2000);
 
+            $(document).on('click', '.destroy_commande', function(e){
+                    e.preventDefault();
+                    var that = $(this);
+                    new Swal({
+                        title: 'Supprimer?',
+                        icon: 'warning',
+                        showDenyButton: true,
+                        showCancelButton: false,
+                        confirmButtonText: `Supprimer`,
+                        denyButtonText: `Annuler`,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url:"{{route('commande.destroy')}}",
+                                data:{
+                                    _token:     $('meta[name="csrf-token"]').attr('content'),
+                                    commande:         that.data('commande')
+                                },
+                                method: 'POST',
+                                success: function(response){
+                                    location.reload();
+                                    console.log(response)
+                                }
+                            });
+                        }
+                    });
+                });
+
         });
     </script>
 

@@ -117,7 +117,14 @@ class CommandeController extends Controller
      */
     public function destroy(Commande $commande)
     {
-        //
+       foreach($commande->details() as $d){
+           $d->delete();
+       }
+       $commande->delete();
+       return [
+           'status'     =>  'success',
+           'message'    =>  'Commande Supprimé'
+       ];
     }
 
     public function counter(){

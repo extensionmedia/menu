@@ -12,6 +12,7 @@ Route::post('/commande/item/store', [CommandeDetailController::class, 'store'])-
 Route::post('/commande/item/destroy', [CommandeDetailController::class, 'destroy'])->name('commande.item.destroy');
 Route::get('/commande', [CommandeController::class, 'index'])->name('commande.index');
 Route::post('/commande', [CommandeController::class, 'store'])->name('commande.store');
+Route::post('/commande/destroy', [CommandeController::class, 'destroy'])->name('commande.destroy');
 Route::get('/commande/counter', [CommandeController::class, 'counter'])->name('commande.counter');
 Route::get('/commande/all', [CommandeController::class, 'all'])->name('commande.all')->middleware('auth');;
 Route::get('/commande/closed', [CommandeController::class, 'closed'])->name('commande.closed');
