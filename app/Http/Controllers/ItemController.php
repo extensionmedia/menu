@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Support\Str;
+use App\Models\Commande;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class ItemController extends Controller
 {
@@ -16,8 +18,27 @@ class ItemController extends Controller
      */
     public function index(Category $category)
     {
+
+        $UID = Session::has('UID')? Session::get('UID'): (string) Str::uuid();
+        $commande = Commande::where('UID', $UID)->first();
+
+        $items = $category->items->each(function($c) use ($commande){
+            $counter = 0;
+            if($commande){
+                foreach($commande->details as $d){
+                    if($d->item){
+                        if($d->item->id == $c->id){
+                            $counter += $d->qte;
+                        }
+                    }
+                }
+            }
+            $c->commande = $counter;
+        });
+
+
         return view('item.index')->with([
-            'items'     =>  $category->items,
+            'items'     =>  $items,
             'category'  =>  $category
         ]);
     }

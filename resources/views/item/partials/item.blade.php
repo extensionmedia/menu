@@ -5,7 +5,13 @@
     }
 </style>
 
-<div class="w-full bg-white md:flex border rounded-lg mb-4 overflow-hidden cursor-pointer hover:shadow hover:border-blue-200">
+<div class="relative w-full bg-white md:flex @if ($item->commande > 0) border-4 border-green-600 @else border border-white @endif rounded-lg mb-4 overflow-hidden cursor-pointer hover:shadow hover:border-blue-200">
+    @if ($item->commande > 0)
+        <div class="absolute top-0 left-0 m-2 h-8 w-8 z-10 rounded-full bg-green-600 text-white text-center text-lg">
+            {{$item->commande}}
+        </div>
+    @endif
+
     <div class="w-full md:w-60 overflow-hidden relative">
         <img class="w-60 h-60 mx-auto" src="{{$item->image}}">
         @auth
@@ -20,8 +26,8 @@
                     <p class="text-xl text-gray-800 font-bold">
                         {{$item->name}}
                     </p>
-                    <p class="bg-yellow-600 text-white rounded-full px-2">
-                        {{$item->price}} MAD
+                    <p class="bg-yellow-600 text-white text-center rounded-full px-2 w-24">
+                        {{$item->price}} DH
                     </p>
                 </div>
                 <div class="text-md text-gray-600 py-2">

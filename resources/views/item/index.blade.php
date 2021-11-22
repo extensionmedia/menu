@@ -26,6 +26,7 @@
         @endforeach
         <script>
             $(document).ready(function(){
+
                 $('.is_active').change(function(){
                     let id = $(this).data('id')
                     let that = $(this);
@@ -43,6 +44,7 @@
                         }
                     })
                 })
+
                 $(document).on('click', '.destroy_item', function(e){
                     e.preventDefault();
                     var that = $(this);
@@ -76,6 +78,8 @@
                         $('.flash').remove();
                     }, 4000);
                 }
+
+
             });
     </script>
 
