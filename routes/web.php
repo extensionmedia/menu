@@ -12,33 +12,33 @@ Route::post('/commande/item/store', [CommandeDetailController::class, 'store'])-
 Route::post('/commande/item/destroy', [CommandeDetailController::class, 'destroy'])->name('commande.item.destroy');
 Route::get('/commande', [CommandeController::class, 'index'])->name('commande.index');
 Route::post('/commande', [CommandeController::class, 'store'])->name('commande.store');
-Route::post('/commande/destroy', [CommandeController::class, 'destroy'])->name('commande.destroy');
+Route::post('/commande/destroy', [CommandeController::class, 'destroy'])->name('commande.destroy')->middleware('auth');
 Route::get('/commande/counter', [CommandeController::class, 'counter'])->name('commande.counter');
-Route::get('/commande/all', [CommandeController::class, 'all'])->name('commande.all')->middleware('auth');;
-Route::get('/commande/closed', [CommandeController::class, 'closed'])->name('commande.closed');
+Route::get('/commande/all', [CommandeController::class, 'all'])->name('commande.all')->middleware('auth');
+Route::get('/commande/closed', [CommandeController::class, 'closed'])->name('commande.closed')->middleware('auth');
 Route::post('/commande/ticket', [CommandeController::class, 'ticket'])->name('commande.ticket');
 Route::post('/commande/ticket/close', [CommandeController::class, 'ticketClose'])->name('commande.ticket.close');
 Route::get('/commande/number', [CommandeController::class, 'getNumber'])->name('commande.number');
-Route::get('/commande/getBy', [CommandeController::class, 'getBy'])->name('commande.getBy');
+Route::get('/commande/getBy', [CommandeController::class, 'getBy'])->name('commande.getBy')->middleware('auth');
 Route::get('/commande/queue', [CommandeController::class, 'queue'])->name('commande.queue');
 
 Route::get('/item/index/{category}', [ItemController::class, 'index'])->name('items');
-Route::get('/item/create', [ItemController::class, 'create'])->name('item.create');
-Route::get('/item/edit/{item}', [ItemController::class, 'edit'])->name('item.edit');
-Route::post('/item/store', [ItemController::class, 'store'])->name('item.store');
-Route::put('/item/update/{item}', [ItemController::class, 'update'])->name('item.update');
-Route::post('/item/destroy', [ItemController::class, 'destroy'])->name('item.destroy');
-Route::post('/item/activate', [ItemController::class, 'activate'])->name('item.activate');
+Route::get('/item/create', [ItemController::class, 'create'])->name('item.create')->middleware('auth');
+Route::get('/item/edit/{item}', [ItemController::class, 'edit'])->name('item.edit')->middleware('auth');
+Route::post('/item/store', [ItemController::class, 'store'])->name('item.store')->middleware('auth');
+Route::put('/item/update/{item}', [ItemController::class, 'update'])->name('item.update')->middleware('auth');
+Route::post('/item/destroy', [ItemController::class, 'destroy'])->name('item.destroy')->middleware('auth');
+Route::post('/item/activate', [ItemController::class, 'activate'])->name('item.activate')->middleware('auth');
 
-Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
-Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
-Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
-Route::put('/category/update/{category}', [CategoryController::class, 'update'])->name('category.update');
-Route::post('/category/activate', [CategoryController::class, 'activate'])->name('category.activate');
+Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create')->middleware('auth');
+Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit')->middleware('auth');
+Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store')->middleware('auth');
+Route::put('/category/update/{category}', [CategoryController::class, 'update'])->name('category.update')->middleware('auth');
+Route::post('/category/activate', [CategoryController::class, 'activate'])->name('category.activate')->middleware('auth');
 
-Route::post('file/upload', [FileUploadController::class, 'upload'])->name('file.upload');
-Route::post('file/read', [FileUploadController::class, 'getFiles'])->name('file.read');
-Route::post('file/destroy', [FileUploadController::class, 'destroy'])->name('file.destroy');
+Route::post('file/upload', [FileUploadController::class, 'upload'])->name('file.upload')->middleware('auth');
+Route::post('file/read', [FileUploadController::class, 'getFiles'])->name('file.read')->middleware('auth');
+Route::post('file/destroy', [FileUploadController::class, 'destroy'])->name('file.destroy')->middleware('auth');
 
 
 Route::get('/dashboard', function () {
