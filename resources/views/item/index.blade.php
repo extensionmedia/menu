@@ -79,6 +79,11 @@
                     }, 4000);
                 }
 
+                $('.show_loader').click(function(){
+                    $(this).find('i').remove();
+                    $(this).prepend('<i class="fas fa-sync fa-spin"></i>');
+                    $(this).prop('disabled', true).closest( "form" ).submit();
+                })
 
             });
     </script>
