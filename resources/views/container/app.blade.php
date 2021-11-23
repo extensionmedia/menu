@@ -103,9 +103,10 @@
                     console.log(r);
                     $(".counter").html(r)
             });
-            $(".loader_").fadeOut("slow");
         })
-
+        $(window).on("load", function() {
+            $(".loader_").fadeOut("slow");
+        });
     </script>
 </body>
 </html>
