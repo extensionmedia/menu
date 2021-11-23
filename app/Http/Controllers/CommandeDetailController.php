@@ -7,6 +7,7 @@ use App\Models\CommandeDetail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Stevebauman\Location\Facades\Location;
 
 class CommandeDetailController extends Controller
 {
@@ -38,10 +39,8 @@ class CommandeDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //Session::forget('UID');
-        //dd(Session::all());
+
         $UID = Session::has('UID')? Session::get('UID'): (string) Str::uuid();
-       // dd($UID);
         $table_id = $request->has('table_id')? $request->table_id: 1;
         $livraison_id = $request->has('livraison_id')? $request->livraison_id: 1;
         $commande = Commande::where('is_active', 0)
@@ -52,6 +51,10 @@ class CommandeDetailController extends Controller
         if(!$commande){
             Session::forget('UID');
             Session::put('UID', $UID);
+
+            $ip = $request->ip();
+            $currentUserInfo = Location::get($ip);
+
             Commande::create([
                 'is_active'     =>  0,
                 'table_id'      =>  $table_id,
