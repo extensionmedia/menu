@@ -6,7 +6,6 @@ use App\Http\Controllers\CommandeDetailController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
-use Stevebauman\Location\Facades\Location;
 
 Route::get('/', [CategoryController::class, 'index'])->name('home');
 Route::post('/commande/item/store', [CommandeDetailController::class, 'store'])->name('commande.item.store');
@@ -46,13 +45,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/location', function(){
-    $ip = \Request::ip(); //$request->ip(); //Dynamic IP address */
-    dump($ip);
-    //$ip = '196.89.242.255'; /* Static IP address */
-    $currentUserInfo = Location::get($ip);
-    dd($currentUserInfo);
-});
 
 Route::get('/print', [CommandeController::class, 'print']);
 

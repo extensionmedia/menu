@@ -7,7 +7,6 @@ use App\Models\CommandeDetail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Stevebauman\Location\Facades\Location;
 
 class CommandeDetailController extends Controller
 {
@@ -51,9 +50,6 @@ class CommandeDetailController extends Controller
         if(!$commande){
             Session::forget('UID');
             Session::put('UID', $UID);
-
-            $ip = $request->ip();
-            $currentUserInfo = Location::get($ip);
 
             Commande::create([
                 'is_active'     =>  0,
