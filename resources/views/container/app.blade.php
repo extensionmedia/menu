@@ -47,7 +47,7 @@
             }
         }
 
-        .loader {
+        .loader_ {
             position: fixed;
             opacity: 50%;
             left: 0px;
@@ -61,7 +61,7 @@
     </style>
 </head>
 <body>
-    <div class="loader"></div>
+    <div class="loader_"></div>
     <div class="relative bg-white content w-screen h-screen bg-no-repeat overflow-auto pb-14" style="background-image: url({{asset('img/background_04.jpg')}})">
         <div class="w-full xl:w-10/12 xl:mx-auto pb-8">
             @include('container.common.top')
@@ -103,7 +103,7 @@
                     console.log(r);
                     $(".counter").html(r)
             });
-            $(".loader").fadeOut("slow");
+            $(".loader_").fadeOut("slow");
         })
 
     </script>
