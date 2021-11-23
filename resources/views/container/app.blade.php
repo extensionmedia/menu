@@ -47,9 +47,21 @@
             }
         }
 
+        .loader {
+            position: fixed;
+            opacity: 50%;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('https://lkp.dispendik.surabaya.go.id/assets/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+        }
+
     </style>
 </head>
 <body>
+    <div class="loader"></div>
     <div class="relative bg-white content w-screen h-screen bg-no-repeat overflow-auto pb-14" style="background-image: url({{asset('img/background_04.jpg')}})">
         <div class="w-full xl:w-10/12 xl:mx-auto pb-8">
             @include('container.common.top')
@@ -91,7 +103,9 @@
                     console.log(r);
                     $(".counter").html(r)
             });
+            $(".loader").fadeOut("slow");
         })
+
     </script>
 </body>
 </html>
