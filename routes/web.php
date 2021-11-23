@@ -54,4 +54,6 @@ Route::get('/location', function(){
     dd($currentUserInfo);
 });
 
+Route::get('/print', [CommandeController::class, 'print']);
+
 require __DIR__.'/auth.php';
