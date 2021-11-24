@@ -14,4 +14,8 @@ class OptionsInItem extends Model
         'item_id',
         'item_option_id'
     ];
+
+    public function item(){
+        return $this->belongsTo(Item::class, 'item_id', 'id');
+    }
 }

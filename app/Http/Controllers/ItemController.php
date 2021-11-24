@@ -101,7 +101,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        $options = ItemOption::where('is_active', 1);
+        $options = ItemOption::where('is_active', 1)->get();
         return view('item.edit')->with([
             'options'   =>  $options,
             'item'  =>  $item,

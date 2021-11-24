@@ -21,4 +21,8 @@ class Item extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+    public function options(){
+        return $this->hasMany(OptionsInItem::class, 'item_id', 'id');
+    }
 }
