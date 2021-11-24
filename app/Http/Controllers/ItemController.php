@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Commande;
 use App\Models\Item;
+use App\Models\ItemOption;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -100,7 +101,9 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
+        $options = ItemOption::where('is_active', 1);
         return view('item.edit')->with([
+            'options'   =>  $options,
             'item'  =>  $item,
             'UID'       =>      Str::uuid(),
             'categories'    =>      Category::where('is_active', 1)->orderBy('level')->get()
