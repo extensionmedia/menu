@@ -35,7 +35,25 @@ class ItemOptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->has('option_name')){
+            $name = $request->option_name;
+            if($request->has('is_checked')){
+                $is_active = $request->is_checked;
+                ItemOption::create([
+                    'name'          =>  $name,
+                    'is_active'     =>  $is_active? 1: 0
+                ]);
+                return [
+                    'status'        =>  'success',
+                    'message'       =>  'Item Option has been created'
+                ];
+            }
+        }
+        return [
+            'status'        =>  'error',
+            'message'       =>  'Item Option hcould not be created'
+        ];
+
     }
 
     /**

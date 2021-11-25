@@ -40,6 +40,7 @@ Route::post('/category/activate', [CategoryController::class, 'activate'])->name
 Route::get('/item/option/create', [ItemOptionController::class, 'create'])->name('item.option.create')->middleware('auth');
 Route::get('/item/option/edit/{option}', [ItemOptionController::class, 'edit'])->name('item.option.edit')->middleware('auth');
 Route::put('/item/option/update/{option}', [ItemOptionController::class, 'update'])->name('item.option.update')->middleware('auth');
+Route::post('/item/option/store', [ItemOptionController::class, 'store'])->name('item.option.store')->middleware('auth');
 
 Route::post('file/upload', [FileUploadController::class, 'upload'])->name('file.upload')->middleware('auth');
 Route::post('file/read', [FileUploadController::class, 'getFiles'])->name('file.read')->middleware('auth');

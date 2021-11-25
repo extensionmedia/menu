@@ -21,7 +21,12 @@
         $('.option_add').click(function(e){
             e.preventDefault();
             var option_name = $('#option_name').val()
-            var is_checked = $('#is_checked').val()
+            var is_checked = $('#is_checked').prop('checked')
+            if(option_name == ""){
+                $('#option_name').addClass("border-red-500")
+                $('#option_name').select()
+                return false
+            }
             $.ajax({
                 url:"{{ route('item.option.store') }}",
                 data:{
@@ -31,7 +36,8 @@
                 },
                 method: 'POST',
                 success: function(response){
-                    $('.reload').trigger('click');
+                    console.log(response)
+                    //$('.reload').trigger('click');
                 }
             });
         })
