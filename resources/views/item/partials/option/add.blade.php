@@ -22,8 +22,18 @@
             e.preventDefault();
             var option_name = $('#option_name').val()
             var is_checked = $('#is_checked').val()
-
-            alert('hello')
+            $.ajax({
+                url:"{{ route('item.option.store') }}",
+                data:{
+                    _token:         $('meta[name="csrf-token"]').attr('content'),
+                    option_name:     option_name,
+                    is_checked:      is_checked
+                },
+                method: 'POST',
+                success: function(response){
+                    $('.reload').trigger('click');
+                }
+            });
         })
         $('.option_destroy').click(function(e){
             e.preventDefault();
