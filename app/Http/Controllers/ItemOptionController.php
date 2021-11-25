@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use App\Models\ItemOption;
+use App\Models\OptionsInItem;
 use Illuminate\Http\Request;
 
 class ItemOptionController extends Controller
@@ -24,7 +26,7 @@ class ItemOptionController extends Controller
      */
     public function create()
     {
-        //
+        return view('item_option.add');
     }
 
     /**
@@ -73,9 +75,13 @@ class ItemOptionController extends Controller
      * @param  \App\Models\ItemOption  $itemOption
      * @return \Illuminate\Http\Response
      */
-    public function edit(ItemOption $itemOption)
+    public function edit(Request $request)
     {
-        //
+        $id = $request->id;
+        $option = ItemOption::find($id);
+        return view('item_option.edit')->with([
+            'option'    =>  $option
+        ]);
     }
 
     /**
@@ -96,8 +102,40 @@ class ItemOptionController extends Controller
      * @param  \App\Models\ItemOption  $itemOption
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ItemOption $itemOption)
+    public function destroy(Request $request)
     {
-        //
+        if($request->has('id')){
+            $id = $request->id;
+            $option = ItemOption::find($id);
+            if($option){
+                $option->delete();
+                foreach(OptionsInItem::where('item_option_id', $id)->get() as $op){
+                    $op->delete();
+                }
+            }
+        }
+    }
+
+    public function list(Request $request){
+        $html = 'khawi';
+        if($request->has('id')){
+            $item = Item::find($request->id);
+            $options = ItemOption::orderBy('name')->get();
+            $html = "";
+            foreach($options as $k=>$op){
+                if($k == 0){
+                    $html = view('item_option.partials.item')->with([
+                        'item'  =>  $item,
+                        'op'    =>  $op
+                    ]);
+                }else{
+                    $html .= view('item_option.partials.item')->with([
+                        'item'  =>  $item,
+                        'op'    =>  $op
+                    ]);
+                }
+            }
+        }
+        return $html;
     }
 }
