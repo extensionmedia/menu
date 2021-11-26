@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Commande;
 use App\Models\Item;
 use App\Models\ItemOption;
+use App\Models\OptionsInItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -119,6 +120,7 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
+
         $item->name = $request->name;
         $item->category_id = $request->category_id;
         $item->description = $request->description;
@@ -127,6 +129,26 @@ class ItemController extends Controller
         $item->price = $request->price;
         $item->is_active = $request->has('is_active')? 1:0;
         $item->save();
+
+        if($request->has('item_options')){
+            foreach( OptionsInItem::where('item_id', $item->id)->get() as $d  ){
+                $d->delete();
+            }
+            foreach($request->item_options as $op){
+                $is_default = 0;
+                if($request->has('item_options_is_default')){
+                    if(in_array($op, $request->item_options_is_default)){
+                        $is_default = 1;
+                    }
+                }
+                OptionsInItem::create([
+                    'item_id'           =>      $item->id,
+                    'item_option_id'    =>      $op,
+                    'is_default'        =>      $is_default
+                ]);
+            }
+        }
+
         return redirect(route('items', ['category'=>$request->category_id]));
     }
 

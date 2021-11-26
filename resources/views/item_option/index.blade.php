@@ -2,7 +2,7 @@
     <div class="text-lg font-bold py-4">
         Options
     </div>
-    <div class="option_refresh text-xl text-gray-400 cursor-pointer hover:text-gray-600">
+    <div class="hidden option_refresh text-xl text-gray-400 cursor-pointer hover:text-gray-600">
         <i class="fas fa-sync"></i>
     </div>
     <div class="option_add text-xl text-green-400 cursor-pointer hover:text-green-600">

@@ -33,6 +33,23 @@
                 <div class="text-md text-gray-600 py-2">
                     {{$item->description}}
                 </div>
+                <div class="py-4">
+                    @foreach ($item->options as $op)
+                        <div class="inline-block">
+                            <label for="toggle_{{$op->id}}" class="flex gap-1 items-center cursor-pointer rounded-xl  pr-1 border">
+                                <div class="relative">
+                                    <input @if($op->is_default) checked @endif value="{{$op->id}}" name="item_options[]" type="checkbox" id="toggle_{{$op->id}}" class="sr-only">
+                                    <div class="block bg-gray-300 w-10 h-6 rounded-full"></div>
+                                    <div class="dot absolute left-1 top-1 bg-gray-400 w-4 h-4 rounded-full transition"></div>
+                                </div>
+                                <div class="text-gray-600 font-bold text-xs">
+                                    {{$op->option->name}}
+                                </div>
+                            </label>
+                        </div>
+
+                    @endforeach
+                </div>
             </div>
             <div class="flex justify-between">
                 <form method="POST" action="{{route('commande.item.store')}}" class="flex justify-between items-end">

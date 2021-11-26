@@ -12,10 +12,15 @@ class OptionsInItem extends Model
     protected $fillable = [
         'name',
         'item_id',
-        'item_option_id'
+        'item_option_id',
+        'is_default'
     ];
 
     public function item(){
         return $this->belongsTo(Item::class, 'item_id', 'id');
+    }
+
+    public function option(){
+        return $this->belongsTo(ItemOption::class, 'item_option_id', 'id');
     }
 }

@@ -44,23 +44,37 @@
                 }
             });
         })
+
         $('.option_abort').click(function(e){
             e.preventDefault();
             $('.option_container').html("")
         })
+
         $('.option_destroy').click(function(e){
             e.preventDefault();
-            var id  = {{$option->id}}
-            $.ajax({
-                url:"{{ route('item.option.destroy') }}",
-                data:{
-                    _token:         $('meta[name="csrf-token"]').attr('content'),
-                    id:              id
-                },
-                method: 'POST',
-                success: function(response){
-                    $('.option_container').html("")
-                    $('.option_refresh').trigger('click');
+            new Swal({
+                title: 'Supprimer?',
+                icon: 'warning',
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: `Supprimer`,
+                denyButtonText: `Annuler`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    e.preventDefault();
+                    var id  = {{$option->id}}
+                    $.ajax({
+                        url:"{{ route('item.option.destroy') }}",
+                        data:{
+                            _token:         $('meta[name="csrf-token"]').attr('content'),
+                            id:              id
+                        },
+                        method: 'POST',
+                        success: function(response){
+                            $('.option_container').html("")
+                            $('.option_refresh').trigger('click');
+                        }
+                    });
                 }
             });
         })
