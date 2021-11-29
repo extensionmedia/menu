@@ -43,7 +43,8 @@ class ItemOptionController extends Controller
                 $is_active = $request->is_checked;
                 ItemOption::create([
                     'name'          =>  $name,
-                    'is_active'     =>  $is_active? 1: 0
+                    'is_active'     =>  $is_active? 1: 0,
+                    'price'         =>  $request->has('option_price')? $request->option_price: 0
                 ]);
                 return [
                     'status'        =>  'success',
@@ -53,7 +54,7 @@ class ItemOptionController extends Controller
         }
         return [
             'status'        =>  'error',
-            'message'       =>  'Item Option hcould not be created'
+            'message'       =>  'Item Option could not be created'
         ];
 
     }
@@ -91,9 +92,30 @@ class ItemOptionController extends Controller
      * @param  \App\Models\ItemOption  $itemOption
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ItemOption $itemOption)
+    public function update(Request $request)
     {
-        //
+        if($request->has('option_name')){
+            $name = $request->option_name;
+            if($request->has('is_checked')){
+                $is_active = $request->is_checked;
+                if($request->has('id')){
+                    $id = $request->id;
+                    $option = ItemOption::find($id);
+                    $option->name = $name;
+                    $option->is_active = $is_active? 1: 0;
+                    $option->price = $request->has('option_price')? $request->option_price: 0;
+                    $option->save();
+                    return [
+                        'status'        =>  'success',
+                        'message'       =>  'Item Option has been UPDATED'
+                    ];
+                }
+            }
+        }
+        return [
+            'status'        =>  'error',
+            'message'       =>  'Item Option could not be UPDATED'
+        ];
     }
 
     /**

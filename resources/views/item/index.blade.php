@@ -45,6 +45,11 @@
                     })
                 })
 
+                $('.price_change').change(function(){
+                    let plus = $(this).data('price')
+                    console.log(plus)
+                    $(this).parent().parent().parent().parent().parent().find('.price').html(plus).parent().removeClass('animate__animated animate__rubberBand')
+                })
                 $(document).on('click', '.destroy_item', function(e){
                     e.preventDefault();
                     var that = $(this);

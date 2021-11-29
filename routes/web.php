@@ -39,7 +39,7 @@ Route::post('/category/activate', [CategoryController::class, 'activate'])->name
 
 Route::get('/item/option/create', [ItemOptionController::class, 'create'])->name('item.option.create')->middleware('auth');
 Route::get('/item/option/edit', [ItemOptionController::class, 'edit'])->name('item.option.edit')->middleware('auth');
-Route::put('/item/option/update/{option}', [ItemOptionController::class, 'update'])->name('item.option.update')->middleware('auth');
+Route::put('/item/option/update', [ItemOptionController::class, 'update'])->name('item.option.update')->middleware('auth');
 Route::post('/item/option/store', [ItemOptionController::class, 'store'])->name('item.option.store')->middleware('auth');
 Route::post('/item/option/destroy', [ItemOptionController::class, 'destroy'])->name('item.option.destroy')->middleware('auth');
 Route::get('/item/option/list', [ItemOptionController::class, 'list'])->name('item.option.list')->middleware('auth');

@@ -16,6 +16,7 @@ class CreateItemOptionsTable extends Migration
         Schema::create('item_options', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->float('price')->default(0);
             $table->boolean('is_active')->default(1);
         });
     }

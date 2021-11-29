@@ -11,6 +11,11 @@
                 {{$op->name}}
             </label>
             <div class="flex gap-2">
+                @if ($op->price > 0)
+                    <div class="bg-green-500 text-white text-xs px-2 rounded">
+                        {{ number_format($op->price,2) }} Dh
+                    </div>
+                @endif
                 <input value="{{$op->id}}" name="item_options_is_default[]" type="checkbox" @if( $item->options->toArray()[$_key]["is_default"] ) checked @endif name="is_default" id="">
                 <button data-id="{{$op->id}}" class="option_edit text-gray-400 hover:text-gray-600"><i class="fas fa-wrench"></i></button>
             </div>
@@ -24,6 +29,11 @@
                 {{$op->name}}
             </label>
             <div class="flex gap-2">
+                @if ($op->price > 0)
+                    <div class="bg-green-500 text-white text-xs px-2 rounded">
+                        {{ number_format($op->price,2) }} Dh
+                    </div>
+                @endif
                 <input value="{{$op->id}}" name="item_options_is_default[]" type="checkbox" id="">
                 <button data-id="{{$op->id}}" class="option_edit text-gray-400 hover:text-gray-600"><i class="fas fa-wrench"></i></button>
             </div>
@@ -38,6 +48,9 @@
             {{$op->name}}
         </label>
         <div class="flex gap-2">
+            <div class="bg-green-500 text-white text-xs px-2 rounded">
+                {{$op->price}}
+            </div>
             <input value="{{$op->id}}" name="item_options_is_default[]" type="checkbox" id="">
             <button data-id="{{$op->id}}" class="option_edit text-gray-400 hover:text-gray-600"><i class="fas fa-wrench"></i></button>
         </div>

@@ -23,8 +23,8 @@
         <form method="POST" action="{{route('item.update', ['item'=>$item])}}" class="bg-white py-8 px-4">
             @csrf
             @method('PUT')
-            <div class="flex gap-4">
-                <div class="flex-1">
+            <div class="xl:flex gap-4">
+                <div class="xl:flex-1">
                     <div class="text-gray-600 text-xs flex items-center mb-4">
                         <div class="w-32">Categorie</div>
                         <select class="border rounded py-1 px-2 text-sm flex-1" name="category_id" id="">
@@ -53,7 +53,7 @@
                         <div class="w-32">Visible</div>
                         <input @if($item->is_active) checked @endif type="checkbox" name="is_active">
                     </div>
-                    <div class="text-gray-600 text-xs flex mb-20">
+                    <div class="text-gray-600 text-xs flex xl:mb-20">
                         <div class="w-32">Image</div>
                         <div class="relative">
                             <div class="images rounded-lg h-40 w-40 overflow-hidden border-2 hover:border-blue-700 cursor-pointer">
@@ -69,15 +69,15 @@
 
                     </div>
                 </div>
-                <div class="options_list w-72 bg-blue-50 px-2 text-gray-600">
+                <div class="options_list xl:w-96 bg-blue-50 px-2 text-gray-600">
                     @include('item_option.index')
                 </div>
             </div>
 
 
-            <div class="text-gray-600 text-xs flex items-center mb-4">
+            <div class="text-gray-600 text-xs xl:flex items-center mb-4">
                 <div class="w-32"></div>
-                <button class="bg-green-600 text-white py-2 px-4 rounded-lg">Enregistrer</button>
+                <button class="w-full xl:w-44 bg-green-600 text-white py-4 px-4 rounded-lg">Enregistrer</button>
             </div>
 
         </form>

@@ -27,7 +27,7 @@
                         {{$item->name}}
                     </p>
                     <p class="bg-yellow-600 text-white text-center rounded-full px-2 w-24">
-                        {{$item->price}} DH
+                        <span class="price">{{number_format($item->price,2)}}</span> DH
                     </p>
                 </div>
                 <div class="text-md text-gray-600 py-2">
@@ -38,12 +38,12 @@
                         <div class="inline-block">
                             <label for="toggle_{{$op->id}}" class="flex gap-1 items-center cursor-pointer rounded-xl  pr-1 border">
                                 <div class="relative">
-                                    <input @if($op->is_default) checked @endif value="{{$op->id}}" name="item_options[]" type="checkbox" id="toggle_{{$op->id}}" class="sr-only">
+                                    <input @if($op->is_default) checked @endif value="{{$op->id}}" name="item_options[]" type="checkbox" id="toggle_{{$op->id}}" class="price_change sr-only" data-price="{{$op->option->price}}">
                                     <div class="block bg-gray-300 w-10 h-6 rounded-full"></div>
                                     <div class="dot absolute left-1 top-1 bg-gray-400 w-4 h-4 rounded-full transition"></div>
                                 </div>
                                 <div class="text-gray-600 font-bold text-xs">
-                                    {{$op->option->name}}
+                                    {{$op->option->name}} + {{$op->option->price}}
                                 </div>
                             </label>
                         </div>

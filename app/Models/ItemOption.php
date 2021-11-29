@@ -11,6 +11,7 @@ class ItemOption extends Model
     public $timestamps = false;
     protected $fillable = [
         'name',
-        'is_active'
+        'is_active',
+        'price'
     ];
 }
