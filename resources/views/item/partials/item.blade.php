@@ -36,7 +36,7 @@
                 <div class="py-4">
                     @foreach ($item->options as $op)
                         <div class="inline-block">
-                            <label for="toggle_{{$op->id}}" class="flex gap-1 items-center cursor-pointer rounded-xl  pr-1 border">
+                            <label for="toggle_{{$op->id}}" class="flex gap-1 items-center rounded-xl  pr-1 border cursor-pointer">
                                 <div class="relative">
                                     <input @if($op->is_default) checked @endif value="{{$op->id}}" name="item_options[]" type="checkbox" id="toggle_{{$op->id}}" class="price_change sr-only" data-price="{{$op->option->price}}">
                                     <div class="block bg-gray-300 w-10 h-6 rounded-full"></div>
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="text-gray-600 font-bold text-xs">
                                     @if ($op->option->price>0)
-                                        {{$op->option->name}} + {{$op->option->price}}
+                                        {{$op->option->name}} <span class="bg-green-500 text-white px-1 rounded" style="font-size:10px">{{ number_format($op->option->price,2)}} Dh</span>
                                     @else
                                         {{$op->option->name}}
                                     @endif
