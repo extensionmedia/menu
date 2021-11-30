@@ -47,9 +47,21 @@
 
                 $('.price_change').change(function(){
                     let plus = $(this).data('price')
-                    console.log(plus)
-                    $(this).parent().parent().parent().parent().parent().find('.price').html(plus).parent().removeClass('animate__animated animate__rubberBand')
+                    let plus_container = $(this).parent().parent().parent().parent().parent().find('.price')
+                    let newPrice = 0
+                    if(!$(this).prop('checked')){
+                        newPrice = parseFloat(plus_container.html()) - parseFloat(plus)
+                    }else{
+                        newPrice = parseFloat(plus_container.html()) + parseFloat(plus)
+                    }
+                    plus_container.html(newPrice.toFixed(2))
+                    plus_container.parent().addClass('animate__animated animate__rubberBand')
+                    plus_container.parent().one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(){
+                        plus_container.parent().removeClass('animate__animated animate__rubberBand')
+                    });
                 })
+
+
                 $(document).on('click', '.destroy_item', function(e){
                     e.preventDefault();
                     var that = $(this);
