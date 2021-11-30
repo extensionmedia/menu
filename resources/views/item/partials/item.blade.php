@@ -43,7 +43,11 @@
                                     <div class="dot absolute left-1 top-1 bg-gray-400 w-4 h-4 rounded-full transition"></div>
                                 </div>
                                 <div class="text-gray-600 font-bold text-xs">
-                                    {{$op->option->name}} + {{$op->option->price}}
+                                    @if ($op->option->price>0)
+                                        {{$op->option->name}} + {{$op->option->price}}
+                                    @else
+                                        {{$op->option->name}}
+                                    @endif
                                 </div>
                             </label>
                         </div>
