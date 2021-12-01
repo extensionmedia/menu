@@ -51,7 +51,9 @@
                     let newPrice = 0
                     if(!$(this).prop('checked')){
                         newPrice = parseFloat(plus_container.html()) - parseFloat(plus)
+                        $(this).parent().parent().removeClass('bg-green-300 border-green-400 shadow-lg')
                     }else{
+                        $(this).parent().parent().addClass('bg-green-300 border-green-400 shadow-lg')
                         newPrice = parseFloat(plus_container.html()) + parseFloat(plus)
                     }
                     plus_container.html(newPrice.toFixed(2))

@@ -5,7 +5,7 @@
     }
 </style>
 
-<div class="relative w-full bg-white md:flex @if ($item->commande > 0) border-4 border-green-600 @else border border-white @endif rounded-lg mb-4 overflow-hidden cursor-pointer hover:shadow hover:border-blue-200">
+<div class="relative w-full bg-white md:flex @if ($item->commande > 0) border-4 border-green-600 @else border border-white @endif rounded-lg mb-4 overflow-hidden hover:shadow hover:border-blue-200">
     @if ($item->commande > 0)
         <div class="absolute top-0 left-0 m-2 h-8 w-8 z-10 rounded-full bg-green-600 text-white text-center text-lg">
             {{$item->commande}}
@@ -36,7 +36,7 @@
                 <div class="py-4">
                     @foreach ($item->options as $op)
                         <div class="inline-block">
-                            <label for="toggle_{{$op->id}}" class="flex gap-1 items-center rounded-xl  pr-1 border cursor-pointer">
+                            <label for="toggle_{{$op->id}}" class="flex gap-1 items-center rounded-xl cursor-pointer pr-1 border @if($op->is_default) bg-green-300 border-green-400 shadow-lg @endif">
                                 <div class="relative">
                                     <input @if($op->is_default) checked @endif value="{{$op->id}}" name="item_options[]" type="checkbox" id="toggle_{{$op->id}}" class="price_change sr-only" data-price="{{$op->option->price}}">
                                     <div class="block bg-gray-300 w-10 h-6 rounded-full"></div>
