@@ -47,12 +47,19 @@
 
                 $('.price_change').change(function(){
                     let plus = $(this).data('price')
+                    let item = $(this).data('item')
+                    let id = $(this).attr('id')
                     let plus_container = $(this).parent().parent().parent().parent().parent().find('.price')
                     let newPrice = 0
                     if(!$(this).prop('checked')){
+                        // Option is unchecked and should be removed from commande
+                        $(this).parent().parent().parent().parent().parent().parent().find('form').find("#"+id).remove()
                         newPrice = parseFloat(plus_container.html()) - parseFloat(plus)
                         $(this).parent().parent().removeClass('bg-green-300 border-green-400 shadow-lg')
                     }else{
+                        // Option is checked and add to commande
+                        var input = '<input value="'+item+'" name="item_options[]" type="hidden" id="'+id+'">'
+                        $(this).parent().parent().parent().parent().parent().parent().find('form').append(input)
                         $(this).parent().parent().addClass('bg-green-300 border-green-400 shadow-lg')
                         newPrice = parseFloat(plus_container.html()) + parseFloat(plus)
                     }

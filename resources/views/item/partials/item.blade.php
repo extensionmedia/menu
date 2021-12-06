@@ -38,7 +38,7 @@
                         <div class="inline-block">
                             <label for="toggle_{{$op->id}}" class="flex gap-1 items-center rounded-xl cursor-pointer pr-1 border @if($op->is_default) bg-green-300 border-green-400 shadow-lg @endif">
                                 <div class="relative">
-                                    <input @if($op->is_default) checked @endif value="{{$op->id}}" name="item_options[]" type="checkbox" id="toggle_{{$op->id}}" class="price_change sr-only" data-price="{{$op->option->price}}">
+                                    <input @if($op->is_default) checked @endif value="{{$op->id}}" name="item_options[]" type="checkbox" id="toggle_{{$op->id}}" class="price_change sr-only" data-item="{{$op->option->id}}" data-price="{{$op->option->price}}">
                                     <div class="block bg-gray-300 w-10 h-6 rounded-full"></div>
                                     <div class="dot absolute left-1 top-1 bg-gray-400 w-4 h-4 rounded-full transition"></div>
                                 </div>
@@ -56,9 +56,14 @@
                 </div>
             </div>
             <div class="flex justify-between">
-                <form method="POST" action="{{route('commande.item.store')}}" class="flex justify-between items-end">
+                <form id="add_to_commande" method="POST" action="{{route('commande.item.store')}}" class="flex justify-between items-end">
                     @csrf
                     <input type="hidden" name="item_id" value="{{$item->id}}">
+                    @foreach ($item->options as $op)
+                        @if($op->is_default)
+                            <input value="{{$op->option->id}}" name="item_options[]" type="hidden" id="toggle_{{$op->id}}">
+                        @endif
+                    @endforeach
                     <button class="show_loader py-2 px-4 bg-green-800 text-white rounded border border-green-700"><i class="fas fa-plus"></i> Ajouter à ma commande</button>
                 </form>
                 @auth

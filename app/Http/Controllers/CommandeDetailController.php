@@ -39,6 +39,8 @@ class CommandeDetailController extends Controller
     public function store(Request $request)
     {
 
+        dd($request->all());
+
         $UID = Session::has('UID')? Session::get('UID'): (string) Str::uuid();
         $table_id = $request->has('table_id')? $request->table_id: 1;
         $livraison_id = $request->has('livraison_id')? $request->livraison_id: 1;
@@ -84,12 +86,7 @@ class CommandeDetailController extends Controller
 
         Session::flash('message', "Commande Modifié!!");
         return back();
-        return redirect(route('commande.index'));
 
-        return [
-            'status'        =>  'success',
-            'message'       =>  'Item added successfuly'
-        ];
     }
 
     /**
