@@ -5,7 +5,7 @@
     }
 </style>
 
-<div class="relative w-full bg-white md:flex @if ($item->commande > 0) border-4 border-green-600 @else border border-white @endif rounded-lg mb-4 overflow-hidden hover:shadow hover:border-blue-200">
+<div class="relative w-full md:flex @if ($item->commande > 0) border-4 border-green-600 bg-green-100 @else border border-white bg-white @endif rounded-lg mb-4 overflow-hidden hover:shadow hover:border-blue-200">
     @if ($item->commande > 0)
         <div class="absolute top-0 left-0 m-2 h-8 w-8 z-10 rounded-full bg-green-600 text-white text-center text-lg">
             {{$item->commande}}
@@ -35,10 +35,33 @@
                 </div>
                 <div class="py-4">
                     @foreach ($item->options as $op)
+
+                        @php
+                            $checked = false
+                        @endphp
+
+                        @if($item->commande_options)
+                            @if($key = array_search($op->item_option_id, array_column($item->commande_options, 'item_option_id')) !== false)
+                                @php $checked = true @endphp
+                            @else
+                                @php $checked = false @endphp
+                            @endif
+                        @else
+                            @if ($item->commande > 0)
+                                @php $checked = false @endphp
+                            @else
+                                @if($op->is_default)
+                                    @php $checked = true @endphp
+                                @endif
+                            @endif
+                        @endif
+
                         <div class="inline-block">
-                            <label for="toggle_{{$op->id}}" class="flex gap-1 items-center rounded-xl cursor-pointer pr-1 border @if($op->is_default) bg-green-300 border-green-400 shadow-lg @endif">
+                            <label for="toggle_{{$op->id}}" class="flex gap-1 items-center rounded-xl cursor-pointer pr-2 @if($checked) bg-green-300 border-2 border-green-400 shadow-lg @else border border-gray-400 @endif">
                                 <div class="relative">
-                                    <input @if($op->is_default) checked @endif value="{{$op->id}}" name="item_options[]" type="checkbox" id="toggle_{{$op->id}}" class="price_change sr-only" data-item="{{$op->option->id}}" data-price="{{$op->option->price}}">
+
+                                    <input @if($checked) checked @endif value="{{$op->id}}" name="item_options[]" type="checkbox" id="toggle_{{$op->id}}" class="price_change sr-only" data-item="{{$op->option->id}}" data-price="{{$op->option->price}}">
+
                                     <div class="block bg-gray-300 w-10 h-6 rounded-full"></div>
                                     <div class="dot absolute left-1 top-1 bg-gray-400 w-4 h-4 rounded-full transition"></div>
                                 </div>
@@ -60,7 +83,28 @@
                     @csrf
                     <input type="hidden" name="item_id" value="{{$item->id}}">
                     @foreach ($item->options as $op)
-                        @if($op->is_default)
+                        @php
+                            $checked = false
+                        @endphp
+
+                        @if($item->commande_options)
+                            @if($key = array_search($op->item_option_id, array_column($item->commande_options, 'item_option_id')) !== false)
+                                @php $checked = true @endphp
+                            @else
+                                @php $checked = false @endphp
+                            @endif
+                        @else
+                            @if ($item->commande > 0)
+                                @php $checked = false @endphp
+                            @else
+                                @if($op->is_default)
+                                    @php $checked = true @endphp
+                                @endif
+                            @endif
+                        @endif
+
+
+                        @if($checked)
                             <input value="{{$op->option->id}}" name="item_options[]" type="hidden" id="toggle_{{$op->id}}">
                         @endif
                     @endforeach

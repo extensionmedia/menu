@@ -19,4 +19,8 @@ class CommandeDetail extends Model
         return $this->hasOne(Item::class, 'id', 'item_id');
     }
 
+    public function options(){
+        return $this->hasMany(CommandeDetailOption::class, 'commande_detail_id', 'id');
+    }
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Commande;
 use App\Models\CommandeDetail;
+use App\Models\CommandeDetailOption;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class CommandeDetailController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
+        //dd($request->all());
 
         $UID = Session::has('UID')? Session::get('UID'): (string) Str::uuid();
         $table_id = $request->has('table_id')? $request->table_id: 1;
@@ -71,8 +72,9 @@ class CommandeDetailController extends Controller
                 $qte++;
             }
         }
+        $detail = null;
         if($qte == 1){
-            CommandeDetail::create([
+            $detail = CommandeDetail::create([
                 'commande_id'       =>  $commande->id,
                 'item_id'           =>  $request->item_id,
                 'qte'               =>  $qte
@@ -81,6 +83,18 @@ class CommandeDetailController extends Controller
             $detail = CommandeDetail::where('item_id', $item_id)->where('commande_id', $commande->id)->first();
             $detail->qte++;
             $detail->save();
+        }
+
+        $detail->options()->delete();
+
+        if($request->has('item_options')){
+
+            foreach($request->item_options as $op){
+                CommandeDetailOption::create([
+                    'commande_detail_id'        =>      $detail->id,
+                    'item_option_id'            =>      $op
+                ]);
+            }
         }
 
 

@@ -26,16 +26,19 @@ class ItemController extends Controller
 
         $items = $category->items->each(function($c) use ($commande){
             $counter = 0;
+            $options = [];
             if($commande){
                 foreach($commande->details as $d){
                     if($d->item){
                         if($d->item->id == $c->id){
                             $counter += $d->qte;
+                            $options = $d->options->toArray();
                         }
                     }
                 }
             }
             $c->commande = $counter;
+            $c->commande_options = $options;
         });
 
 
