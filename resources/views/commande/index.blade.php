@@ -24,19 +24,23 @@
                             {{$commande->created_at->diffForHumans()}}
                         </div>
                     </div>
-                    <div class="bg-white md:w-3/5 mx-1 md:mx-auto rounded-lg overflow-hidden shadow-lg">
+                    <div class="md:w-3/5 mx-1 md:mx-auto rounded-lg overflow-hidden">
                         @php
                             $total = 0
                         @endphp
                         @foreach ($commande->details as $detail)
-
                             @php
                                 $total += $detail->qte * $detail->item->price
                             @endphp
+                            @foreach ($detail->options as $op)
+                                @php
+                                    $total += $detail->qte * $op->item_option->price
+                                @endphp
+                            @endforeach
                             @include('commande.partials.item')
 
                         @endforeach
-                        <div class="px-4 border-dashed border-t-2 text-gray-50 text-right bg-gray-600">
+                        <div class="px-4 text-gray-50 text-right bg-green-500">
                             <div class="flex justify-between items-center py-4">
                                 <div class="text-lg text-gray-50">
                                     Element(s) : {{$commande->details->sum('qte')}}
@@ -52,7 +56,7 @@
                     @csrf
                     <input type="hidden" name="commande_id" value="{{$commande->id}}">
                     <div class="md:w-3/5 mx-1 md:mx-auto mt-8">
-                        <button class="w-full md:w-64 bg-green-600 text-white py-2 px-12 rounded-lg">Passer Ma Commande</button>
+                        <button class="w-full md:w-64 bg-green-600 text-white py-4 px-12 rounded-lg">Passer Ma Commande</button>
                     </div>
                 </form>
             @else

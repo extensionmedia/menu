@@ -13,4 +13,9 @@ class CommandeDetailOption extends Model
         'commande_detail_id',
         'item_option_id'
     ];
+
+    public function item_option(){
+        return $this->hasOne(ItemOption::class, 'id', 'item_option_id');
+    }
+
 }
