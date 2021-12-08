@@ -33,18 +33,38 @@
     @php
         $total = 0;
         $qte = 0;
+        $options_total = 0;
     @endphp
     @foreach ($commande->details as $detail)
-        <div class="border-b border-dashed py-1 flex justify-between items-center">
-            <div class="">
-                [{{$detail->qte}}] {{$detail->item->name}}
+
+        @php $options_total = 0 @endphp
+
+        <div class="border-b border-dashed py-1">
+            <div class="flex justify-between items-center">
+                <div class="">
+                    [{{$detail->qte}}] {{$detail->item->name}}
+                    <div class="">
+                        @if($detail->options->count())
+                            @foreach ($detail->options as $op)
+                                <div class="px-2 text-xs text-green-600">
+                                    <i class="fas fa-check"></i> {{$op->item_option->name}}
+                                    @php
+                                        $options_total += $op->item_option->price
+                                    @endphp
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+                <div class="">
+                    {{ ($detail->item->price + $options_total) * $detail->qte}} DH
+                </div>
             </div>
-            <div class="">
-                {{$detail->item->price * $detail->qte}} DH
-            </div>
+
+
         </div>
         @php
-            $total += $detail->item->price * $detail->qte;
+            $total += ($detail->item->price + $options_total) * $detail->qte;
             $qte += $detail->qte;
         @endphp
     @endforeach
