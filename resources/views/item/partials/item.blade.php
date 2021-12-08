@@ -108,7 +108,7 @@
                             <input value="{{$op->option->id}}" name="item_options[]" type="hidden" id="toggle_{{$op->id}}">
                         @endif
                     @endforeach
-                    <button class="show_loader py-2 px-4 bg-green-800 text-white rounded border border-green-700"><i class="fas fa-plus"></i> Ajouter à ma commande</button>
+                    <button class="show_loader py-2 px-4 bg-green-400 text-gray-900 rounded-full border-2 border-green-500 hover:bg-green-500"><i class="fas fa-plus"></i> Ajouter à ma commande</button>
                 </form>
                 @auth
                     <div class="flex items-center">

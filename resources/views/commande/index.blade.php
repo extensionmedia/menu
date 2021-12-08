@@ -56,7 +56,7 @@
                     @csrf
                     <input type="hidden" name="commande_id" value="{{$commande->id}}">
                     <div class="md:w-3/5 mx-1 md:mx-auto mt-8">
-                        <button class="w-full md:w-64 bg-green-600 text-white py-4 px-12 rounded-lg">Passer Ma Commande</button>
+                        <button class="w-full md:w-64 py-2 px-4 bg-green-400 text-gray-900 rounded-full border-2 border-green-500 hover:bg-green-500">Passer Ma Commande</button>
                     </div>
                 </form>
             @else
