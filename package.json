@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "moment": "^2.29.1",
+        "push.js": "^1.0.12",
         "sweetalert2": "^11.1.9"
     }
 }

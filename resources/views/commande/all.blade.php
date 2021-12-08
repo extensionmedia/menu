@@ -62,6 +62,7 @@
         $(document).ready(function(){
             $(document).on('click', '.show_ticket', function(){
                 var id = $(this).data('id');
+                parent.location.hash = "ticket_"+id;
                 $('.show_ticket').removeClass('border-2 border-green-500 shadow-lg bg-gray-200');
                 $(this).addClass('border-2 border-green-500 shadow-lg bg-gray-200');
                 var loader = `
@@ -172,6 +173,14 @@
                             processing_queue = false;
                             if(data.length > 0){
                                 $('.livraison_id_change').trigger('change');
+                                Push.create("Nouvelle Commande", {
+                                    body: "Vous avez une nouvelle commande, Click pour visualiser",
+                                    icon: '/img/logo.png',
+                                    requireInteraction: true,
+                                    onClick: function () {
+                                        window.open('http://www.menu.soukexpress.ma/commande/all#ticket_'+data[0].commande_id, '_blank');
+                                    }
+                                });
                                 console.log(data);
                             }
                         }
@@ -207,6 +216,19 @@
                         }
                     });
                 });
+
+        });
+
+        $(window).on('load', function() {
+            var ticket = window.location.hash.substr(1);
+            if(ticket !== ""){
+                $('.show_ticket').each(function(){
+                    var id = "ticket_"+$(this).data('id')
+                    if(ticket == id){
+                        $(this).trigger('click')
+                    }
+                })
+            }
 
         });
     </script>

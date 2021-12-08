@@ -16,7 +16,7 @@ class Category extends Model
     ];
     public $timestamps = false;
     public function items(){
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Item::class)->orderBy('level');
     }
 
     // public function commande(){
