@@ -6,6 +6,26 @@
       background-color: #48bb78;
     }
     </style>
+    <div class="flex gap-4 justify-between py-2 items-center">
+        @can('category.add')
+            <div class="flex gap-2 item-center">
+                <a href="{{route('category.create')}}" class="border border-green-700 text-white bg-green-600 gap-2 text-sm flex items-center rounded-lg px-2 py-2">
+                    <i class="fas fa-plus"></i>
+                    <span class="text-sm">Category</span>
+                </a>
+                <a href="{{route('item.create')}}" class="border border-green-700 text-white bg-green-600 gap-2 text-sm flex items-center rounded-lg px-2 py-2">
+                    <i class="fas fa-plus"></i>
+                    <span class="text-sm">Plat</span>
+                </a>
+            </div>
+        @endcan
+        <form method="POST" action="{{route('logout')}}" class="text-sm bg-red-500 rounded-lg text-white p-2 hover:bg-red-600">
+            @csrf
+            <button>
+                <i class="fas fa-user-alt-slash"></i> Déconnecter
+            </button>
+        </form>
+    </div>
     <div class="border rounded-lg overflow-hidden my-4">
         <div class="bg-gray-100 py-2 px-4 text-gray-800 text-sm flex justify-between">
             <div class="">

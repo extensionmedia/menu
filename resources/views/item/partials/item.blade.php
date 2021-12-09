@@ -15,8 +15,10 @@
     <div class="w-full md:w-60 overflow-hidden relative">
         <img class="w-60 h-60 mx-auto" src="{{$item->image}}">
         @auth
-            <a href="{{route('item.edit', $item)}}" class="bg-white bg-opacity-10 absolute top-0 right-0 m-4 text-gray-500 px-1 hover:bg-blue-600 hover:text-gray-50 rounded-lg"><i class="fas fa-wrench"></i></a>
-            <a action="#" data-item="{{$item->id}}" class="destroy_item bg-white bg-opacity-10 absolute top-0 left-0 m-4 text-red-500 px-1 hover:bg-red-600 hover:text-red-50 rounded-lg"><i class="fas fa-minus-circle"></i></a>
+            @can('item.edit')
+                <a href="{{route('item.edit', $item)}}" class="bg-white bg-opacity-10 absolute top-0 right-0 m-4 text-gray-500 px-1 hover:bg-blue-600 hover:text-gray-50 rounded-lg"><i class="fas fa-wrench"></i></a>
+                <a action="#" data-item="{{$item->id}}" class="destroy_item bg-white bg-opacity-10 absolute top-0 left-0 m-4 text-red-500 px-1 hover:bg-red-600 hover:text-red-50 rounded-lg"><i class="fas fa-minus-circle"></i></a>
+            @endcan
         @endauth
     </div>
     <div class="flex-1 py-3 px-4">
@@ -111,18 +113,20 @@
                     <button class="show_loader py-2 px-4 bg-green-400 text-gray-900 rounded-full border-2 border-green-500 hover:bg-green-500"><i class="fas fa-plus"></i> Ajouter à ma commande</button>
                 </form>
                 @auth
-                    <div class="flex items-center">
-                        <div class="loading hidden px-1 text-green-500 text-sm">
-                            <i class="fas fa-sync fa-spin"></i>
-                        </div>
-                        <label for="toggle_{{$item->id}}" class="flex items-center cursor-pointer">
-                            <div class="relative">
-                                <input type="checkbox" @if($item->is_active) checked @endif id="toggle_{{$item->id}}" data-id="{{$item->id}}" class="is_active sr-only">
-                                <div class="block bg-gray-600 w-10 h-6 rounded-full"></div>
-                                <div class="dot absolute left-1 top-1 bg-red-500 w-4 h-4 rounded-full transition"></div>
+                    @can('item.edit')
+                        <div class="flex items-center">
+                            <div class="loading hidden px-1 text-green-500 text-sm">
+                                <i class="fas fa-sync fa-spin"></i>
                             </div>
-                        </label>
-                    </div>
+                            <label for="toggle_{{$item->id}}" class="flex items-center cursor-pointer">
+                                <div class="relative">
+                                    <input type="checkbox" @if($item->is_active) checked @endif id="toggle_{{$item->id}}" data-id="{{$item->id}}" class="is_active sr-only">
+                                    <div class="block bg-gray-600 w-10 h-6 rounded-full"></div>
+                                    <div class="dot absolute left-1 top-1 bg-red-500 w-4 h-4 rounded-full transition"></div>
+                                </div>
+                            </label>
+                        </div>
+                    @endcan
                 @endauth
             </div>
         </div>

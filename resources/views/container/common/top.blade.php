@@ -17,13 +17,10 @@
     </a>
 
     @auth
-        <form method="POST" action="{{route('logout')}}" class="absolute top-0 right-0 mx-4 my-3 text-gray-800 hover:text-gray-600">
-            @csrf
-            <button>
-                <i class="fas fa-user-alt-slash"></i>
-            </button>
-        </form>
-        @else
+        <a href="{{route('commande.all')}}" class="absolute top-0 right-0 mx-4 my-3 text-gray-800 hover:text-gray-600">
+            <i class="fas fa-bars"></i>
+        </a>
+    @else
         <a href="{{route('login')}}" class="absolute top-0 right-0 mx-4 my-3 text-gray-800 hover:text-gray-600">
             <i class="fas fa-user-alt"></i>
         </a>

@@ -3,11 +3,14 @@
     <i class="far fa-thumbs-up"></i> {{ Session::get('message') }}
 </div>
 @endif
-<div class="w-3/5 mx-auto flex justify-end py-4">
-    <button data-commande="{{$commande->id}}" class="destroy_commande bg-red-600 text-white px-2 py-1 rounded-lg text-xs">
-        <i class="far fa-trash-alt"></i> Supprimer
-    </button>
-</div>
+@can('commande.delete')
+    <div class="w-3/5 mx-auto flex justify-end py-4">
+        <button data-commande="{{$commande->id}}" class="destroy_commande bg-red-600 text-white px-2 py-1 rounded-lg text-xs">
+            <i class="far fa-trash-alt"></i> Supprimer
+        </button>
+    </div>
+@endcan
+
 <div class="w-3/5 mx-auto bg-white border my-4 rounded-lg px-2 py-4 text-gray-600">
 
     <div class="flex justify-between items-center border-gray-400 pb-1">
