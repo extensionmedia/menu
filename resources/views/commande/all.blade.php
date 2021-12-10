@@ -17,6 +17,10 @@
                     <i class="fas fa-plus"></i>
                     <span class="text-sm">Plat</span>
                 </a>
+                <a href="{{route('user.index')}}" class="border border-green-700 text-white bg-green-600 gap-2 text-sm flex items-center rounded-lg px-2 py-2">
+                    <i class="fas fa-plus"></i>
+                    <span class="text-sm">Utilisateurs</span>
+                </a>
             </div>
         @endcan
         <form method="POST" action="{{route('logout')}}" class="text-sm bg-red-500 rounded-lg text-white p-2 hover:bg-red-600">

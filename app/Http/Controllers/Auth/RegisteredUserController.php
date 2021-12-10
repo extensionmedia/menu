@@ -55,4 +55,11 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    public function index(){
+        $users = User::all();
+        return view('admin.user.index')->with([
+            'users'     =>      $users
+        ]);
+    }
 }
