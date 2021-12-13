@@ -4,7 +4,7 @@
     </div>
     <div class="absolute top-0 right-0 h-4 w-4 m-2 rounded-full @if($user->is_active)bg-green-500 @else bg-red-500 @endif"></div>
     <div class="absolute top-0 left-0 h-4 w-4 m-2">
-        <a href="http://127.0.0.1:8000/user/edit/{{$user->id}}" class="text-gray-500 px-1 hover:bg-blue-600 hover:text-gray-50 rounded-lg">
+        <a href="{{route('user.edit',['user'=>$user->id])}}" class="text-gray-500 px-1 hover:bg-blue-600 hover:text-gray-50 rounded-lg">
             <i class="fas fa-wrench"></i>
         </a>
     </div>
