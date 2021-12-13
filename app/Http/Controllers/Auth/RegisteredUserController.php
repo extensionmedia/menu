@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -20,8 +21,9 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return redirect(route('home'));
-        return view('auth.register');
+        return view('admin.user.create')->with([
+                        'UID'       =>      Str::uuid()
+        ]);
     }
 
     /**
@@ -35,8 +37,6 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
 
-        return redirect(route('home'));
-
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -47,13 +47,17 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'is_active'     =>  $request->has('is_active')? 1:0,
+            'is_admin'     =>  $request->has('is_admin')? 1:0,
+            'image'         =>  $request->filename
         ]);
 
-        event(new Registered($user));
+        //event(new Registered($user));
 
-        Auth::login($user);
+        //Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(route('user.index'));
+
     }
 
     public function index(){
@@ -62,4 +66,24 @@ class RegisteredUserController extends Controller
             'users'     =>      $users
         ]);
     }
+
+    public function edit(User $user){
+        return view('admin.user.edit')->with([
+            'user'      =>  $user,
+            'UID'       =>      Str::uuid(),
+        ]);
+
+    }
+
+    public function update(Request $request, User $user)
+    {
+
+        $user->name = $request->name;
+        $user->image = $request->filename;
+        $user->is_active = $request->has('is_active')? 1:0;
+        $user->save();
+
+        return redirect(route('user.index'));
+    }
+
 }

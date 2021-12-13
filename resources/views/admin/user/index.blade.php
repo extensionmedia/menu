@@ -9,15 +9,15 @@
     <div class="border rounded-lg overflow-hidden my-4">
         <div class="bg-gray-100 py-2 px-4 text-gray-800 text-sm flex justify-between">
             <div class="">
-                <i class="fas fa-plus"></i> Liste des utilisateurs
+                <i class="fas fa-user"></i> Liste des utilisateurs
             </div>
             <div class="">
-                <button class="text-gray-400 hover:text-green-600">
+                <a href="{{route('user.create')}}" class="text-gray-400 hover:text-green-600">
                     <i class="fas fa-plus"></i>
-                </button>
+                </a>
             </div>
         </div>
-        <div class="bg-white flex gap-4 p-4">
+        <div class="bg-white flex gap-4 p-4 pb-16">
             @foreach ($users as $user)
                 @include('admin.user.partials.item')
             @endforeach

@@ -14,12 +14,21 @@ Route::get('/user/index', [RegisteredUserController::class, 'index'])
                 ->middleware('auth')
                 ->name('user.index');
 
-Route::get('/register', [RegisteredUserController::class, 'create'])
-                ->middleware('guest')
-                ->name('register');
+Route::get('/user/edit/{user}', [RegisteredUserController::class, 'edit'])
+                ->middleware('auth')
+                ->name('user.edit');
 
-Route::post('/register', [RegisteredUserController::class, 'store'])
-                ->middleware('guest');
+Route::put('/user/update/{user}', [RegisteredUserController::class, 'update'])
+                ->middleware('auth')
+                ->name('user.update');
+
+Route::get('/user/create', [RegisteredUserController::class, 'create'])
+                ->middleware('auth')
+                ->name('user.create');
+
+Route::post('/user.store', [RegisteredUserController::class, 'store'])
+                ->middleware('auth')
+                ->name('user.store');
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')

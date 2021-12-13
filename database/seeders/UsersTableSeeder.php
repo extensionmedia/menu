@@ -29,7 +29,9 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => NULL,
                 'created_at' => '2021-11-11 14:40:15',
                 'updated_at' => '2021-11-11 14:40:15',
-                'is_admin'      =>  true
+                'is_admin'      =>  true,
+                'is_active'      =>  true,
+                'image'         =>  'https://cdn-icons-png.flaticon.com/512/219/219983.png'
             ),
             1 =>
             array (
@@ -41,7 +43,9 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => NULL,
                 'created_at' => '2021-11-11 14:40:15',
                 'updated_at' => '2021-11-11 14:40:15',
-                'is_admin'      =>  false
+                'is_admin'      =>  false,
+                'is_active'      =>  true,
+                'image'         =>  'https://cdn-icons-png.flaticon.com/512/219/219983.png'
             ),
         ));
 
