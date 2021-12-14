@@ -46,13 +46,37 @@
             </div>
             <div class="text-gray-600 text-xs flex items-center mb-4">
                 <div class="w-32"></div>
-                <button class="bg-green-600 text-white py-2 px-4 rounded-lg">Enregistrer</button>
+                <div class="flex-1 flex gap-4">
+                    <button class="w-full md:w-64 py-2 px-4 bg-green-400 text-gray-900 rounded-full border-2 border-green-500 hover:bg-green-500">Enregistrer</button>
+                    <button class="destroy py-2 px-4 text-red-900 rounded-full hover:bg-red-500 hover:text-white"><i class="far fa-trash-alt"></i> Supprimer</button>
+                </div>
             </div>
 
         </form>
-
+        <form method="post" id="destroy" action="{{route('category.destroy', ['category'=>$category])}}">
+            @csrf
+            @method("DELETE")
+        </form>
         <script>
             $(document).ready(function(){
+
+                $('.destroy').click(function(e){
+                    e.preventDefault();
+                    new Swal({
+                        title: 'Supprimer?',
+                        icon: 'warning',
+                        showDenyButton: true,
+                        showCancelButton: false,
+                        confirmButtonText: `Supprimer`,
+                        denyButtonText: `Annuler`,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $('#destroy').submit();
+                        }
+                    });
+
+                });
+
                 $(document).on('click', '.destroy_image', function(e){
                     e.preventDefault();
                     var that = $(this);

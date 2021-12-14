@@ -36,6 +36,8 @@ Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->na
 Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store')->middleware('auth');
 Route::put('/category/update/{category}', [CategoryController::class, 'update'])->name('category.update')->middleware('auth');
 Route::post('/category/activate', [CategoryController::class, 'activate'])->name('category.activate')->middleware('auth');
+Route::delete('/category/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy')->middleware('auth');
+
 
 Route::get('/item/option/create', [ItemOptionController::class, 'create'])->name('item.option.create')->middleware('auth');
 Route::get('/item/option/edit', [ItemOptionController::class, 'edit'])->name('item.option.edit')->middleware('auth');

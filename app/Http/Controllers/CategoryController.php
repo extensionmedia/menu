@@ -123,7 +123,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->items()->delete();
+        $category->delete();
+        return redirect(route('home'));
     }
 
     public function activate(Request $request){

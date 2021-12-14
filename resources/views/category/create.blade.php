@@ -40,7 +40,7 @@
 
             <div class="text-gray-600 text-xs flex items-center mb-4">
                 <div class="w-32"></div>
-                <button class="bg-green-600 text-white py-2 px-4 rounded-lg">Enregistrer</button>
+                <button class="w-full md:w-64 py-2 px-4 bg-green-400 text-gray-900 rounded-full border-2 border-green-500 hover:bg-green-500">Enregistrer</button>
             </div>
 
         </form>
