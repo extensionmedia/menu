@@ -45,18 +45,18 @@
 
             <div class="text-gray-600 text-xs flex items-center mb-4">
                 <div class="w-32">Administrateur</div>
-                <input type="checkbox" name="is_admin">
+                <input @if(Auth::user()->is_admin) disabled @endif type="checkbox" name="is_admin">
             </div>
 
             <div class="text-gray-600 text-xs flex mb-20">
                 <div class="w-32">Image</div>
                 <div class="relative">
                     <div class="images rounded-lg h-40 w-40 overflow-hidden border-2 hover:border-blue-700 cursor-pointer">
-                        <img class="bg-cover h-40 w-40" src="" alt="">
+                        <img class="bg-cover h-40 w-40" src="https://cdn-icons-png.flaticon.com/512/219/219983.png" alt="">
                     </div>
                     <div class="reload hidden">reload</div>
                     <input name="file" id="poster" type="file" class="hidden">
-                    <input type="hidden" name="filename" id="filename" value="">
+                    <input type="hidden" name="filename" id="filename" value="https://cdn-icons-png.flaticon.com/512/219/219983.png">
                     <div class="new_image btn p-2 mr-2 text-gray-400 cursor-pointer hover:text-green-600 text-center">
                         <i class="fas fa-cloud-upload-alt"></i> changer
                     </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="text-gray-600 text-xs flex items-center mb-4">
                 <div class="w-32"></div>
-                <button class="bg-green-600 text-white py-2 px-4 rounded-lg">Enregistrer</button>
+                <button class="w-full md:w-64 py-2 px-4 bg-green-400 text-gray-900 rounded-full border-2 border-green-500 hover:bg-green-500">Enregistrer</button>
             </div>
 
         </form>

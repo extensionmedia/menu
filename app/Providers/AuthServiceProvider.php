@@ -27,11 +27,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('category.add', fn(User $user) => $user->is_admin);
-        Gate::define('category.edit', fn(User $user) => $user->is_admin);
-        Gate::define('item.edit', fn(User $user) => $user->is_admin);
-        Gate::define('item.add', fn(User $user) => $user->is_admin);
-        Gate::define('commande.delete', fn(User $user) => $user->is_admin);
+        Gate::define('category.add', function($user){ return $user->is_admin; });
+        Gate::define('category.edit', function($user){ return $user->is_admin; });
+        Gate::define('item.edit', function($user){ return $user->is_admin; });
+        Gate::define('item.add', function($user){ return $user->is_admin; });
+        Gate::define('commande.delete', function($user){ return $user->is_admin; });
 
         //
     }

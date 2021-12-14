@@ -14,11 +14,28 @@
             @endphp
         </div>
         <form method="POST" action="{{route('user.update', ['user'=>$user])}}" class="bg-white py-8 px-4">
+            @if($errors->any())
+                {!! implode('', $errors->all('<div class="text-red-500 text-xs">:message</div>')) !!}
+            @endif
             @csrf
             @method('PUT')
             <div class="text-gray-600 text-xs flex items-center mb-4">
                 <div class="w-32">Nom Utilisateur</div>
                 <input value="{{$user->name}}" required class="border rounded py-1 px-2 text-sm flex-1" type="text" name="name" placeholder="Nom...">
+            </div>
+            <div class="text-gray-600 text-xs flex items-center mb-4">
+                <div class="w-32">Email</div>
+                <div class="flex flex-1 gap-1 items-center">
+                    <input value="{{$user->email}}" disabled required class="border rounded py-1 px-2 text-sm flex-1" type="email" id="email" name="email" placeholder="email">
+                    <button class="change_email py-1 px-3 bg-blue-100 rounded border border-blue-200 text-gray-900 w-32">Changer Email</button>
+                </div>
+            </div>
+            <div class="text-gray-600 text-xs flex items-center mb-4">
+                <div class="w-32">Password</div>
+                <div class="flex flex-1 gap-1 items-center">
+                    <input value="" required disabled class="border rounded py-1 px-2 text-sm flex-1" type="password" id="password" name="password" placeholder="******">
+                    <button class="change_password py-1 px-3 bg-blue-100 rounded border border-blue-200 text-gray-900 w-32">Password</button>
+                </div>
             </div>
 
             <div class="text-gray-600 text-xs flex items-center mb-4">
@@ -28,7 +45,7 @@
 
             <div class="text-gray-600 text-xs flex items-center mb-4">
                 <div class="w-32">Administrateur</div>
-                <input type="checkbox" @if($user->is_admin) checked @endif name="is_admin">
+                <input @if(Auth::user()->is_admin) disabled @endif type="checkbox" @if($user->is_admin) checked @endif name="is_admin">
             </div>
 
             <div class="text-gray-600 text-xs flex mb-20">
@@ -48,13 +65,24 @@
             </div>
             <div class="text-gray-600 text-xs flex items-center mb-4">
                 <div class="w-32"></div>
-                <button class="bg-green-600 text-white py-2 px-4 rounded-lg">Enregistrer</button>
+                <button class="w-full md:w-64 py-2 px-4 bg-green-400 text-gray-900 rounded-full border-2 border-green-500 hover:bg-green-500">Enregistrer</button>
             </div>
 
         </form>
 
         <script>
             $(document).ready(function(){
+
+                $('.change_email').on('click', function(e){
+                    e.preventDefault()
+                    $('#email').prop('disabled', false).focus()
+                })
+
+                $('.change_password').on('click', function(e){
+                    e.preventDefault()
+                    $('#password').prop('disabled', false).focus()
+                })
+
                 $(document).on('click', '.destroy_image', function(e){
                     e.preventDefault();
                     var that = $(this);

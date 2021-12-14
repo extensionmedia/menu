@@ -78,9 +78,25 @@ class RegisteredUserController extends Controller
     public function update(Request $request, User $user)
     {
 
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['sometimes', 'string', 'email', 'max:255', 'unique:users'],
+        ]);
+
         $user->name = $request->name;
         $user->image = $request->filename;
+
+        if($request->email){
+            if($request->email != $user->email){
+                $user->email = $request->email;
+            }
+        }
+        if($request->password){
+            $user->password = Hash::make($request->password);
+        }
+
         $user->is_active = $request->has('is_active')? 1:0;
+        $user->is_admin = $request->has('is_admin')? 1:0;
         $user->save();
 
         return redirect(route('user.index'));
