@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\CommandeDetailController;
+use App\Http\Controllers\ExtratController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
@@ -45,6 +46,13 @@ Route::put('/item/option/update', [ItemOptionController::class, 'update'])->name
 Route::post('/item/option/store', [ItemOptionController::class, 'store'])->name('item.option.store')->middleware('auth');
 Route::post('/item/option/destroy', [ItemOptionController::class, 'destroy'])->name('item.option.destroy')->middleware('auth');
 Route::get('/item/option/list', [ItemOptionController::class, 'list'])->name('item.option.list')->middleware('auth');
+
+Route::get('/extrat/create', [ExtratController::class, 'create'])->name('extrat.create')->middleware('auth');
+Route::get('/extrat/edit', [ExtratController::class, 'edit'])->name('extrat.edit')->middleware('auth');
+Route::put('/extrat/update', [ExtratController::class, 'update'])->name('extrat.update')->middleware('auth');
+Route::post('/extrat/store', [ExtratController::class, 'store'])->name('extrat.store')->middleware('auth');
+Route::post('/extrat/destroy', [ExtratController::class, 'destroy'])->name('extrat.destroy')->middleware('auth');
+Route::get('/extrat/index', [ExtratController::class, 'index'])->name('extrat.index')->middleware('auth');
 
 Route::post('file/upload', [FileUploadController::class, 'upload'])->name('file.upload')->middleware('auth');
 Route::post('file/read', [FileUploadController::class, 'getFiles'])->name('file.read')->middleware('auth');
